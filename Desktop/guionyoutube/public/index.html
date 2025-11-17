@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Guiones Largos con IA - 100% Gratis</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎬 Generador de Guiones Largos con IA</h1>
+            <p class="subtitle">Crea guiones profesionales de 30+ minutos - 100% GRATIS</p>
+            <div class="provider-status" id="providerStatus">
+                <span class="status-label">Estado del sistema:</span>
+                <span class="status-indicator loading">Verificando...</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Tabs de navegación -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="generar">
+                    📝 Generar Guion
+                </button>
+                <button class="tab-button" data-tab="whisper">
+                    🎙️ Transcribir con Whisper
+                </button>
+                <button class="tab-button" data-tab="investigar">
+                    🔍 Investigar Tema
+                </button>
+            </div>
+
+            <!-- Tab: Generar Guion -->
+            <div class="tab-content active" id="tab-generar">
+                <div class="form-card">
+                    <h2>Configuración del Guion</h2>
+
+                    <div class="form-group">
+                        <label for="tema">Tema del Video *</label>
+                        <input
+                            type="text"
+                            id="tema"
+                            placeholder="Ej: Inteligencia Artificial en 2025"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nicho">Nicho</label>
+                            <select id="nicho">
+                                <option value="general">General</option>
+                                <option value="tecnologia">Tecnología</option>
+                                <option value="educacion">Educación</option>
+                                <option value="negocios">Negocios</option>
+                                <option value="salud">Salud y Bienestar</option>
+                                <option value="entretenimiento">Entretenimiento</option>
+                                <option value="ciencia">Ciencia</option>
+                                <option value="finanzas">Finanzas</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="desarrollo-personal">Desarrollo Personal</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracion">Duración (minutos)</label>
+                            <input
+                                type="number"
+                                id="duracion"
+                                value="30"
+                                min="10"
+                                max="120"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tono">Tono del Video</label>
+                            <select id="tono">
+                                <option value="profesional">Profesional</option>
+                                <option value="casual">Casual</option>
+                                <option value="educativo">Educativo</option>
+                                <option value="motivacional">Motivacional</option>
+                                <option value="entretenido">Entretenido</option>
+                                <option value="tecnico">Técnico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provider">Motor de IA</label>
+                            <select id="provider">
+                                <option value="groq">Groq (Rápido - Requiere API Key)</option>
+                                <option value="ollama">Ollama (Local - 100% Gratis)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirIntro" checked>
+                                Incluir Introducción
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirOutro" checked>
+                                Incluir Conclusión
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="generarBtn">
+                        🚀 Generar Guion
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Un guion de 30 minutos contiene aproximadamente 7,500 palabras.
+                        Esta herramienta genera contenido EXTENSO y DETALLADO para videos largos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Whisper -->
+            <div class="tab-content" id="tab-whisper">
+                <div class="form-card">
+                    <h2>Transcripción con Whisper</h2>
+
+                    <div class="info-box info">
+                        <strong>ℹ️ Instrucciones:</strong><br>
+                        Whisper es 100% gratis. Tienes varias opciones para usarlo:
+                        <ul>
+                            <li><strong>Groq API:</strong> Configura tu GROQ_API_KEY (gratis en console.groq.com)</li>
+                            <li><strong>Local:</strong> Instala Whisper con <code>pip install openai-whisper</code></li>
+                            <li><strong>Online:</strong> Usa servicios gratuitos y pega la transcripción abajo</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="audioUrl">URL del Audio (opcional)</label>
+                        <input
+                            type="url"
+                            id="audioUrl"
+                            placeholder="https://example.com/audio.mp3"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transcripcionManual">O pega tu transcripción aquí:</label>
+                        <textarea
+                            id="transcripcionManual"
+                            rows="6"
+                            placeholder="Pega aquí la transcripción de tu audio..."
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temaTranscripcion">Tema relacionado</label>
+                        <input
+                            type="text"
+                            id="temaTranscripcion"
+                            placeholder="Ej: Marketing Digital"
+                        >
+                    </div>
+
+                    <button class="btn btn-primary" id="transcribirBtn">
+                        🎙️ Procesar Transcripción
+                    </button>
+
+                    <button class="btn btn-secondary" id="convertirGuionBtn" style="display: none;">
+                        📝 Convertir a Guion Profesional
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab: Investigar -->
+            <div class="tab-content" id="tab-investigar">
+                <div class="form-card">
+                    <h2>Investigar Tema</h2>
+
+                    <p>Obtén investigación profunda sobre un tema antes de generar el guion.</p>
+
+                    <div class="form-group">
+                        <label for="temaInvestigar">Tema a Investigar *</label>
+                        <input
+                            type="text"
+                            id="temaInvestigar"
+                            placeholder="Ej: Blockchain y Criptomonedas"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidadSubtemas">Número de Subtemas</label>
+                        <input
+                            type="number"
+                            id="cantidadSubtemas"
+                            value="5"
+                            min="3"
+                            max="10"
+                        >
+                    </div>
+
+                    <button class="btn btn-primary" id="investigarBtn">
+                        🔍 Investigar Tema
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Uso:</strong> La investigación te ayudará a crear guiones más completos e informados.
+                        Incluye contexto, subtemas, preguntas frecuentes y más.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de resultados -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>📄 Resultado</h2>
+                    <div class="results-actions">
+                        <button class="btn btn-small" id="copiarBtn">📋 Copiar</button>
+                        <button class="btn btn-small" id="descargarBtn">💾 Descargar .txt</button>
+                        <button class="btn btn-small btn-danger" id="limpiarBtn">🗑️ Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="stats-bar" id="statsBar">
+                    <div class="stat">
+                        <span class="stat-label">Palabras:</span>
+                        <span class="stat-value" id="palabrasCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Caracteres:</span>
+                        <span class="stat-value" id="caracteresCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Duración estimada:</span>
+                        <span class="stat-value" id="duracionEstimada">0 min</span>
+                    </div>
+                </div>
+
+                <div class="result-content" id="resultContent"></div>
+            </div>
+
+            <!-- Loading overlay -->
+            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                <div class="spinner"></div>
+                <p class="loading-text" id="loadingText">Generando guion...</p>
+                <p class="loading-subtext">Esto puede tomar 30-60 segundos para guiones largos</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>
+                💚 100% Gratis • Sin límites • Open Source<br>
+                Powered by Groq & Ollama
+            </p>
+        </footer>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
