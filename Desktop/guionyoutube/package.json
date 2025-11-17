@@ -9,7 +9,14 @@
     "dev": "node --watch server.js",
     "build": "echo 'Build complete'",
     "vercel-build": "echo 'Vercel build complete'",
-    "netlify-build": "echo 'Netlify build complete'"
+    "netlify-build": "echo 'Netlify build complete'",
+    "deploy": "node deploy.js",
+    "deploy:netlify": "node deploy.js netlify",
+    "deploy:vercel": "node deploy.js vercel", 
+    "deploy:railway": "node deploy.js railway",
+    "deploy:help": "node deploy.js help",
+    "check-deploy": "node check-deploy.js",
+    "predeploy": "node check-deploy.js"
   },
   "engines": {
     "node": ">=18.0.0"
