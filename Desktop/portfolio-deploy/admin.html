@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nacho Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin Dashboard Styles */
+        .admin-dashboard {
+            min-height: 100vh;
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-primary);
+        }
+
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .admin-sidebar {
+            background: var(--color-bg-secondary);
+            border-right: 1px solid var(--color-border);
+            padding: 2rem 1.5rem;
+            position: fixed;
+            width: 280px;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .admin-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .admin-nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+        }
+
+        .admin-nav-link:hover,
+        .admin-nav-link.active {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            transform: translateX(5px);
+        }
+
+        .admin-nav-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .admin-main {
+            margin-left: 280px;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .admin-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .admin-header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Stats Cards */
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .admin-stat-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+        }
+
+        .admin-stat-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-glow);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-stat-label {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: var(--letter-spacing-wide);
+        }
+
+        .admin-stat-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .admin-stat-change.negative {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--color-error);
+        }
+
+        /* Table Styles */
+        .admin-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .admin-table {
+            width: 100%;
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .admin-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th {
+            background: var(--color-bg-secondary);
+            color: var(--color-text);
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .admin-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-border-light);
+            color: var(--color-text-secondary);
+        }
+
+        .admin-table tbody tr:hover {
+            background: var(--color-surface);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--color-success);
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--color-warning);
+        }
+
+        .status-inactive {
+            background: rgba(107, 114, 128, 0.1);
+            color: var(--color-text-muted);
+        }
+
+        /* Form Styles */
+        .admin-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        /* Charts Container */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .chart-container {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .admin-stats {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-main {
+                padding: 1rem;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .admin-section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .admin-table {
+                font-size: 0.875rem;
+            }
+
+            .admin-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .admin-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+        }
+
+        .admin-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--color-border);
+            border-top: 4px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-time {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-xs);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .quick-action-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-action-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin: 0 auto 1rem;
+        }
+
+        .quick-action-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-action-description {
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <div class="admin-layout">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <a href="/" class="admin-logo">
+                    <span>NACHO</span>
+                    <span style="color: var(--color-accent);">.WEB3</span>
+                </a>
+
+                <nav>
+                    <ul class="admin-nav">
+                        <li class="admin-nav-item">
+                            <a href="#dashboard" class="admin-nav-link active">
+                                <i class="fas fa-chart-line admin-nav-icon"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="#projects" class="admin-nav-link">
+                                <i class="fas fa-folder admin-nav-icon"></i>
+                                Projects
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="#analytics" class="admin-nav-link">
+                                <i class="fas fa-chart-bar admin-nav-icon"></i>
+                                Analytics
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="#messages" class="admin-nav-link">
+                                <i class="fas fa-envelope admin-nav-icon"></i>
+                                Messages
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="#orders" class="admin-nav-link">
+                                <i class="fas fa-shopping-cart admin-nav-icon"></i>
+                                Orders
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="#settings" class="admin-nav-link">
+                                <i class="fas fa-cog admin-nav-icon"></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li class="admin-nav-item">
+                            <a href="/" class="admin-nav-link">
+                                <i class="fas fa-home admin-nav-icon"></i>
+                                Back to Site
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <header class="admin-header">
+                    <h1 class="admin-title">Dashboard Overview</h1>
+                    <div class="admin-header-actions">
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            Export Report
+                        </button>
+                        <button class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Add Project
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Stats Cards -->
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="admin-stat-value" id="totalProjects">24</div>
+                        <div class="admin-stat-label">Total Projects</div>
+                        <div class="admin-stat-change">
+                            <i class="fas fa-arrow-up"></i>
+                            12% this month
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="admin-stat-value" id="totalViews">125K</div>
+                        <div class="admin-stat-label">Total Views</div>
+                        <div class="admin-stat-change">
+                            <i class="fas fa-arrow-up"></i>
+                            28% this month
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="admin-stat-value" id="totalClients">487</div>
+                        <div class="admin-stat-label">Happy Clients</div>
+                        <div class="admin-stat-change">
+                            <i class="fas fa-arrow-up"></i>
+                            5% this month
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="admin-stat-value" id="totalRevenue">$89.4K</div>
+                        <div class="admin-stat-label">Total Revenue</div>
+                        <div class="admin-stat-change negative">
+                            <i class="fas fa-arrow-down"></i>
+                            3% this month
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="admin-section">
+                    <h2 class="admin-section-title">Quick Actions</h2>
+                    <div class="quick-actions">
+                        <div class="quick-action-card">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="quick-action-title">Add New Project</div>
+                            <div class="quick-action-description">Create a new portfolio entry</div>
+                        </div>
+                        <div class="quick-action-card">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="quick-action-title">New Blog Post</div>
+                            <div class="quick-action-description">Write and publish content</div>
+                        </div>
+                        <div class="quick-action-card">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="quick-action-title">View Analytics</div>
+                            <div class="quick-action-description">Track performance metrics</div>
+                        </div>
+                        <div class="quick-action-card">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="quick-action-title">Send Newsletter</div>
+                            <div class="quick-action-description">Email to subscribers</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Projects Table -->
+                <div class="admin-section">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Recent Projects</h2>
+                        <button class="btn-secondary btn-sm">View All</button>
+                    </div>
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Views</th>
+                                    <th>Revenue</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projectsTableBody">
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: var(--radius);"></div>
+                                            <div>
+                                                <div style="font-weight: 600; color: var(--color-text);">Crypto Market Indicators</div>
+                                                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Blog Platform</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Blockchain</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>52,341</td>
+                                    <td>$12,450</td>
+                                    <td>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-secondary btn-sm">Edit</button>
+                                            <button class="btn-ghost btn-sm">View</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <div style="width: 40px; height: 40px; background: var(--gradient-secondary); border-radius: var(--radius);"></div>
+                                            <div>
+                                                <div style="font-weight: 600; color: var(--color-text);">DeGen Agent</div>
+                                                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">AI Trading Platform</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>AI/DeFi</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td>28,943</td>
+                                    <td>$18,200</td>
+                                    <td>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-secondary btn-sm">Edit</button>
+                                            <button class="btn-ghost btn-sm">View</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <div style="width: 40px; height: 40px; background: var(--gradient-accent); border-radius: var(--radius);"></div>
+                                            <div>
+                                                <div style="font-weight: 600; color: var(--color-text);">NFT Marketplace</div>
+                                                <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Digital Assets</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>NFT</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                    <td>0</td>
+                                    <td>$0</td>
+                                    <td>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn-secondary btn-sm">Edit</button>
+                                            <button class="btn-ghost btn-sm">View</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Activity Feed & Charts -->
+                <div class="charts-grid">
+                    <!-- Activity Feed -->
+                    <div class="chart-container">
+                        <h3 class="chart-title">Recent Activity</h3>
+                        <div class="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Project Added</div>
+                                    <div class="activity-description">DeGen Agent AI Trading Platform</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Payment Received</div>
+                                    <div class="activity-description">$1,250 from Crypto Client</div>
+                                    <div class="activity-time">5 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Contact Form</div>
+                                    <div class="activity-description">Interested in Web3 development</div>
+                                    <div class="activity-time">1 day ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New 5-Star Review</div>
+                                    <div class="activity-description">Great work on the crypto blog!</div>
+                                    <div class="activity-time">2 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Chart -->
+                    <div class="chart-container">
+                        <h3 class="chart-title">Revenue Overview</h3>
+                        <canvas id="revenueChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize revenue chart
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [12000, 15000, 13500, 18000, 22000, 25000],
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#94a3b8',
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#94a3b8'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Animate numbers on page load
+        function animateValue(elementId, start, end, duration) {
+            const element = document.getElementById(elementId);
+            const range = end - start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment * Math.ceil(range / 100);
+                if (current >= end) {
+                    element.textContent = formatValue(elementId, end);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = formatValue(elementId, current);
+                }
+            }, stepTime);
+        }
+
+        function formatValue(elementId, value) {
+            switch (elementId) {
+                case 'totalRevenue':
+                    return '$' + (value / 1000).toFixed(1) + 'K';
+                case 'totalViews':
+                    return value >= 1000 ? (value / 1000).toFixed(1) + 'K' : value;
+                default:
+                    return value.toLocaleString();
+            }
+        }
+
+        // Animate stats on load
+        window.addEventListener('load', () => {
+            animateValue('totalProjects', 0, 24, 1500);
+            animateValue('totalViews', 0, 125000, 2000);
+            animateValue('totalClients', 0, 487, 1800);
+            animateValue('totalRevenue', 0, 89400, 2200);
+        });
+
+        // Navigation
+        document.querySelectorAll('.admin-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.admin-nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Quick Actions
+        document.querySelectorAll('.quick-action-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Handle quick action clicks
+                console.log('Quick action clicked');
+            });
+        });
+    </script>
+</body>
+</html>

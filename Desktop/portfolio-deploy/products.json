@@ -1,0 +1,289 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Paquete Video Express",
+      "price": 199,
+      "currency": "USD",
+      "description": "Edición profesional de video hasta 3 minutos con color grading básico",
+      "category": "video",
+      "featured": true,
+      "badge": "Popular",
+      "icon": "fas fa-video",
+      "features": [
+        "Edición hasta 3 minutos",
+        "Color grading básico",
+        "1 revisión incluida",
+        "Entrega en 48h",
+        "Archivos HD 1080p"
+      ],
+      "deliveryTime": "48 horas",
+      "revisions": 1
+    },
+    {
+      "id": 2,
+      "name": "Logo + Branding Kit",
+      "price": 299,
+      "currency": "USD",
+      "description": "Logo profesional con identidad visual completa y manual de marca",
+      "category": "design",
+      "featured": true,
+      "badge": "Bestseller",
+      "icon": "fas fa-palette",
+      "features": [
+        "Logo + 3 variaciones",
+        "Manual de marca completo",
+        "Archivos vectoriales (AI, EPS, SVG)",
+        "Revisiones ilimitadas",
+        "Mockups incluidos"
+      ],
+      "deliveryTime": "7 días",
+      "revisions": -1
+    },
+    {
+      "id": 3,
+      "name": "Landing Page Pro",
+      "price": 499,
+      "currency": "USD",
+      "description": "Página web profesional responsive lista para lanzar tu negocio",
+      "category": "web",
+      "featured": true,
+      "badge": "Nuevo",
+      "icon": "fas fa-laptop-code",
+      "features": [
+        "Diseño responsive (móvil/tablet/desktop)",
+        "SEO optimizado",
+        "Formulario de contacto funcional",
+        "Hosting gratis primer año",
+        "Soporte 30 días post-lanzamiento"
+      ],
+      "deliveryTime": "10 días",
+      "revisions": 3
+    },
+    {
+      "id": 4,
+      "name": "NFT Collection Starter",
+      "price": 799,
+      "currency": "USD",
+      "description": "Diseño completo y deploy de tu colección NFT en blockchain",
+      "category": "crypto",
+      "featured": true,
+      "badge": "Hot",
+      "icon": "fas fa-image",
+      "features": [
+        "Diseño de 10 piezas base únicas",
+        "Smart contract ERC-721 seguro",
+        "Deploy en blockchain (Ethereum/Polygon)",
+        "Sistema de arte generativo",
+        "Metadata JSON completo"
+      ],
+      "deliveryTime": "21 días",
+      "revisions": 2
+    },
+    {
+      "id": 5,
+      "name": "Bot IA Personalizado",
+      "price": 599,
+      "currency": "USD",
+      "description": "Bot automático con inteligencia artificial para cualquier plataforma",
+      "category": "bots",
+      "featured": true,
+      "badge": "Premium",
+      "icon": "fas fa-robot",
+      "features": [
+        "Bot 100% personalizado a tu necesidad",
+        "IA integrada (GPT-4, Claude)",
+        "Automatización de tareas completas",
+        "Dashboard analytics en tiempo real",
+        "Soporte y actualizaciones 60 días"
+      ],
+      "deliveryTime": "14 días",
+      "revisions": 2
+    },
+    {
+      "id": 6,
+      "name": "Diseño Tatuaje Custom",
+      "price": 149,
+      "currency": "USD",
+      "description": "Diseño de tatuaje único y personalizado 100% original",
+      "category": "design",
+      "featured": false,
+      "badge": "Trending",
+      "icon": "fas fa-pen-nib",
+      "features": [
+        "Diseño 100% original y exclusivo",
+        "Bocetos detallados en alta resolución",
+        "2 revisiones incluidas",
+        "Archivos imprimibles para tatuador",
+        "Entrega rápida en 5 días"
+      ],
+      "deliveryTime": "5 días",
+      "revisions": 2
+    },
+    {
+      "id": 7,
+      "name": "Video Comercial Premium",
+      "price": 899,
+      "currency": "USD",
+      "description": "Video promocional de hasta 1 minuto con producción cinematográfica",
+      "category": "video",
+      "featured": false,
+      "badge": "Pro",
+      "icon": "fas fa-film",
+      "features": [
+        "Video hasta 1 minuto",
+        "Motion graphics avanzados",
+        "Color grading cinematográfico",
+        "Efectos visuales (VFX)",
+        "Música y sound design incluidos",
+        "3 revisiones",
+        "Entrega en 4K"
+      ],
+      "deliveryTime": "10 días",
+      "revisions": 3
+    },
+    {
+      "id": 8,
+      "name": "E-commerce Completo",
+      "price": 1299,
+      "currency": "USD",
+      "description": "Tienda online completa con carrito y pasarela de pago integrada",
+      "category": "web",
+      "featured": false,
+      "badge": "Enterprise",
+      "icon": "fas fa-shopping-cart",
+      "features": [
+        "Hasta 50 productos",
+        "Carrito de compra funcional",
+        "Pasarela de pago (Stripe/PayPal)",
+        "Panel de administración",
+        "SEO + Analytics",
+        "Soporte 90 días"
+      ],
+      "deliveryTime": "21 días",
+      "revisions": 5
+    },
+    {
+      "id": 9,
+      "name": "Smart Contract Audit",
+      "price": 499,
+      "currency": "USD",
+      "description": "Auditoría completa de seguridad para tu smart contract",
+      "category": "crypto",
+      "featured": false,
+      "badge": "Security",
+      "icon": "fas fa-shield-alt",
+      "features": [
+        "Análisis exhaustivo de código",
+        "Detección de vulnerabilidades",
+        "Reporte detallado de seguridad",
+        "Recomendaciones de mejora",
+        "Re-audit después de correcciones"
+      ],
+      "deliveryTime": "7 días",
+      "revisions": 1
+    },
+    {
+      "id": 10,
+      "name": "Sistema Generación Videos IA",
+      "price": 1499,
+      "currency": "USD",
+      "description": "Sistema completo para generar videos automáticos con IA",
+      "category": "bots",
+      "featured": false,
+      "badge": "AI Powered",
+      "icon": "fas fa-magic",
+      "features": [
+        "Generación automática de scripts con IA",
+        "Edición automática de videos",
+        "Voces IA realistas (texto a voz)",
+        "Publicación programada multi-plataforma",
+        "Dashboard de control completo",
+        "Soporte 90 días"
+      ],
+      "deliveryTime": "21 días",
+      "revisions": 3
+    },
+    {
+      "id": 11,
+      "name": "Branding Completo Empresa",
+      "price": 999,
+      "currency": "USD",
+      "description": "Identidad corporativa completa para tu empresa o marca",
+      "category": "design",
+      "featured": false,
+      "badge": "Complete",
+      "icon": "fas fa-briefcase",
+      "features": [
+        "Logo + variaciones completas",
+        "Manual de identidad corporativa",
+        "Papelería corporativa (tarjetas, hojas)",
+        "Templates redes sociales",
+        "Mockups profesionales",
+        "Archivos fuente editables"
+      ],
+      "deliveryTime": "14 días",
+      "revisions": -1
+    },
+    {
+      "id": 12,
+      "name": "Consultoría Blockchain 1h",
+      "price": 199,
+      "currency": "USD",
+      "description": "Sesión de consultoría personalizada sobre blockchain, crypto y NFTs",
+      "category": "crypto",
+      "featured": false,
+      "badge": "Consulting",
+      "icon": "fas fa-user-tie",
+      "features": [
+        "1 hora de consultoría personalizada",
+        "Asesoramiento experto blockchain",
+        "Estrategia de tokenización",
+        "Análisis de viabilidad de proyecto",
+        "Recomendaciones técnicas",
+        "Grabación de sesión incluida"
+      ],
+      "deliveryTime": "Inmediato",
+      "revisions": 0
+    }
+  ],
+  "categories": [
+    {
+      "id": "video",
+      "name": "Edición de Video",
+      "icon": "fas fa-video"
+    },
+    {
+      "id": "design",
+      "name": "Diseño Gráfico",
+      "icon": "fas fa-palette"
+    },
+    {
+      "id": "web",
+      "name": "Desarrollo Web",
+      "icon": "fas fa-laptop-code"
+    },
+    {
+      "id": "crypto",
+      "name": "Blockchain & Crypto",
+      "icon": "fas fa-bitcoin"
+    },
+    {
+      "id": "bots",
+      "name": "Bots & Automatización",
+      "icon": "fas fa-robot"
+    }
+  ],
+  "shippingInfo": {
+    "digital": "Entrega 100% digital via email o plataforma acordada",
+    "revisions": "Revisiones incluidas según plan contratado",
+    "support": "Soporte post-entrega incluido en todos los paquetes",
+    "payment": "Aceptamos PayPal, Stripe, transferencias y criptomonedas"
+  },
+  "guarantees": [
+    "100% Satisfacción garantizada",
+    "Devolución si no cumple expectativas",
+    "Archivos fuente incluidos",
+    "Derechos de uso comercial completos"
+  ]
+}
