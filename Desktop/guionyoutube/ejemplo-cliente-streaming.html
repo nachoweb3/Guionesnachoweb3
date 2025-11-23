@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo - Streaming de Guiones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+
+        .output h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        #guion {
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-card h3 {
+            color: #667eea;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .status.info {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .status.success {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .status.error {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .generating {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Generador de Guiones con Streaming</h1>
+            <p>Ver el guión generándose en tiempo real</p>
+        </div>
+
+        <div class="content">
+            <form id="guionForm">
+                <div class="form-group">
+                    <label for="tema">📝 Tema del Video:</label>
+                    <input type="text" id="tema" name="tema" placeholder="Ejemplo: Inteligencia Artificial en 2025" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nicho">🎯 Nicho:</label>
+                    <input type="text" id="nicho" name="nicho" placeholder="Ejemplo: tecnología, educación, negocios...">
+                </div>
+
+                <div class="form-group">
+                    <label for="duracion">⏱️ Duración (minutos):</label>
+                    <input type="number" id="duracion" name="duracion" min="10" max="120" value="30">
+                </div>
+
+                <div class="form-group">
+                    <label for="tono">🎨 Tono:</label>
+                    <select id="tono" name="tono">
+                        <option value="profesional">Profesional</option>
+                        <option value="casual">Casual</option>
+                        <option value="divertido">Divertido</option>
+                        <option value="educativo">Educativo</option>
+                        <option value="motivacional">Motivacional</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="provider">🤖 Proveedor de IA:</label>
+                    <select id="provider" name="provider">
+                        <option value="groq">Groq (Rápido - Requiere API Key)</option>
+                        <option value="ollama">Ollama (Local - 100% Gratis)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn" id="generateBtn">
+                    🚀 Generar Guión con Streaming
+                </button>
+            </form>
+
+            <div id="statusDiv"></div>
+
+            <div class="stats" id="stats" style="display: none;">
+                <div class="stat-card">
+                    <h3>Palabras Generadas</h3>
+                    <p id="palabrasCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Caracteres</h3>
+                    <p id="caracteresCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tiempo Transcurrido</h3>
+                    <p id="tiempoCount">0s</p>
+                </div>
+            </div>
+
+            <div class="output" id="output" style="display: none;">
+                <h2>📄 Guión Generado:</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div id="guion"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('guionForm');
+        const guionDiv = document.getElementById('guion');
+        const outputDiv = document.getElementById('output');
+        const statusDiv = document.getElementById('statusDiv');
+        const statsDiv = document.getElementById('stats');
+        const generateBtn = document.getElementById('generateBtn');
+        const progressBar = document.getElementById('progressBar');
+
+        let startTime;
+        let timerInterval;
+        let palabrasTotal = 0;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Limpiar estado anterior
+            guionDiv.textContent = '';
+            outputDiv.style.display = 'block';
+            statsDiv.style.display = 'grid';
+            generateBtn.disabled = true;
+            startTime = Date.now();
+
+            // Iniciar timer
+            timerInterval = setInterval(() => {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                document.getElementById('tiempoCount').textContent = elapsed + 's';
+            }, 1000);
+
+            // Obtener datos del formulario
+            const formData = {
+                tema: document.getElementById('tema').value,
+                nicho: document.getElementById('nicho').value || 'general',
+                duracion: parseInt(document.getElementById('duracion').value),
+                tono: document.getElementById('tono').value,
+                provider: document.getElementById('provider').value
+            };
+
+            // Calcular palabras objetivo
+            palabrasTotal = formData.duracion * 250;
+
+            showStatus('Conectando con servidor...', 'info');
+
+            try {
+                // Realizar POST para iniciar streaming
+                const response = await fetch('http://localhost:3000/api/generar-guion-stream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+
+                showStatus('Generando guión en tiempo real...', 'info');
+                guionDiv.classList.add('generating');
+
+                while (true) {
+                    const { done, value } = await reader.read();
+
+                    if (done) {
+                        clearInterval(timerInterval);
+                        guionDiv.classList.remove('generating');
+                        showStatus('¡Guión completado exitosamente!', 'success');
+                        generateBtn.disabled = false;
+                        progressBar.style.width = '100%';
+                        break;
+                    }
+
+                    buffer += decoder.decode(value, { stream: true });
+                    const lines = buffer.split('\n\n');
+                    buffer = lines.pop();
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = JSON.parse(line.substring(6));
+
+                            switch (data.type) {
+                                case 'start':
+                                    showStatus(data.mensaje, 'info');
+                                    break;
+
+                                case 'chunk':
+                                    guionDiv.textContent += data.contenido;
+                                    updateStats();
+                                    break;
+
+                                case 'complete':
+                                    guionDiv.textContent = data.guion;
+                                    updateStats();
+                                    clearInterval(timerInterval);
+                                    guionDiv.classList.remove('generating');
+                                    showStatus('¡Guión completado exitosamente!', 'success');
+                                    generateBtn.disabled = false;
+                                    progressBar.style.width = '100%';
+                                    break;
+
+                                case 'error':
+                                    showStatus('Error: ' + data.mensaje, 'error');
+                                    clearInterval(timerInterval);
+                                    guionDiv.classList.remove('generating');
+                                    generateBtn.disabled = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('Error: ' + error.message, 'error');
+                clearInterval(timerInterval);
+                guionDiv.classList.remove('generating');
+                generateBtn.disabled = false;
+            }
+        });
+
+        function updateStats() {
+            const texto = guionDiv.textContent;
+            const palabras = texto.trim().split(/\s+/).filter(p => p.length > 0).length;
+            const caracteres = texto.length;
+
+            document.getElementById('palabrasCount').textContent = palabras.toLocaleString();
+            document.getElementById('caracteresCount').textContent = caracteres.toLocaleString();
+
+            // Actualizar barra de progreso
+            const progress = Math.min((palabras / palabrasTotal) * 100, 100);
+            progressBar.style.width = progress + '%';
+        }
+
+        function showStatus(message, type) {
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

@@ -17,6 +17,11 @@ const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://localhost:11434';
 
 /**
  * Genera texto usando Groq (modelos rápidos y gratuitos)
+ * @param {string} prompt - El prompt para generar texto
+ * @param {Object} opciones - Opciones de configuración
+ * @param {boolean} opciones.stream - Si debe hacer streaming (default: false)
+ * @param {Function} opciones.onChunk - Callback para recibir chunks (solo con stream: true)
+ * @returns {Promise<string>} - El texto generado completo
  */
 export async function generarConGroq(prompt, opciones = {}) {
   if (!groqClient) {
@@ -26,20 +31,47 @@ export async function generarConGroq(prompt, opciones = {}) {
   const {
     model = 'mixtral-8x7b-32768', // Modelo gratuito con contexto largo
     maxTokens = 8000,
-    temperature = 0.7
+    temperature = 0.7,
+    stream = false,
+    onChunk = null
   } = opciones;
 
+  const systemPrompt = 'Eres un guionista profesional experto en crear contenido extenso, detallado y atractivo para YouTube. Tus guiones son informativos, entretenidos y mantienen la atención del espectador.';
+
   try {
+    // Modo streaming
+    if (stream && onChunk) {
+      const streamResponse = await groqClient.chat.completions.create({
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: prompt }
+        ],
+        model,
+        max_tokens: maxTokens,
+        temperature,
+        stream: true // Activar streaming en Groq
+      });
+
+      let textoCompleto = '';
+
+      // Procesar chunks del stream
+      for await (const chunk of streamResponse) {
+        const contenido = chunk.choices[0]?.delta?.content || '';
+        if (contenido) {
+          textoCompleto += contenido;
+          // Llamar al callback con el chunk
+          onChunk(contenido);
+        }
+      }
+
+      return textoCompleto;
+    }
+
+    // Modo normal (sin streaming)
     const completion = await groqClient.chat.completions.create({
       messages: [
-        {
-          role: 'system',
-          content: 'Eres un guionista profesional experto en crear contenido extenso, detallado y atractivo para YouTube. Tus guiones son informativos, entretenidos y mantienen la atención del espectador.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: prompt }
       ],
       model,
       max_tokens: maxTokens,
@@ -55,12 +87,21 @@ export async function generarConGroq(prompt, opciones = {}) {
 
 /**
  * Genera texto usando Ollama (Local - 100% Gratis)
+ * @param {string} prompt - El prompt para generar texto
+ * @param {Object} opciones - Opciones de configuración
+ * @param {boolean} opciones.stream - Si debe hacer streaming (default: false)
+ * @param {Function} opciones.onChunk - Callback para recibir chunks (solo con stream: true)
+ * @returns {Promise<string>} - El texto generado completo
  */
 export async function generarConOllama(prompt, opciones = {}) {
   const {
     model = 'llama2', // Modelo por defecto, también puedes usar 'mistral', 'codellama', etc.
-    temperature = 0.7
+    temperature = 0.7,
+    stream = false,
+    onChunk = null
   } = opciones;
+
+  const systemPrompt = 'Eres un guionista profesional experto en crear contenido extenso, detallado y atractivo para YouTube. Tus guiones son informativos, entretenidos y mantienen la atención del espectador.';
 
   try {
     const response = await fetch(`${OLLAMA_HOST}/api/generate`, {
@@ -70,8 +111,8 @@ export async function generarConOllama(prompt, opciones = {}) {
       },
       body: JSON.stringify({
         model,
-        prompt: `Eres un guionista profesional experto en crear contenido extenso, detallado y atractivo para YouTube. Tus guiones son informativos, entretenidos y mantienen la atención del espectador.\n\n${prompt}`,
-        stream: false,
+        prompt: `${systemPrompt}\n\n${prompt}`,
+        stream: stream, // Ollama soporta streaming nativo
         options: {
           temperature
         }
@@ -82,6 +123,36 @@ export async function generarConOllama(prompt, opciones = {}) {
       throw new Error(`Ollama error: ${response.statusText}`);
     }
 
+    // Modo streaming
+    if (stream && onChunk) {
+      let textoCompleto = '';
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n').filter(line => line.trim());
+
+        for (const line of lines) {
+          try {
+            const data = JSON.parse(line);
+            if (data.response) {
+              textoCompleto += data.response;
+              onChunk(data.response);
+            }
+          } catch (e) {
+            // Ignorar líneas que no son JSON válido
+          }
+        }
+      }
+
+      return textoCompleto;
+    }
+
+    // Modo normal (sin streaming)
     const data = await response.json();
     return data.response || '';
   } catch (error) {
@@ -255,9 +326,21 @@ Nos vemos en el próximo video. ¡Hasta pronto!
 
 /**
  * Función genérica para generar texto con el proveedor especificado
+ * Soporta streaming y fallback automático entre proveedores
+ * @param {string} prompt - El prompt para generar texto
+ * @param {Object} opciones - Opciones de configuración
+ * @param {string} opciones.provider - Proveedor a usar ('groq' o 'ollama')
+ * @param {boolean} opciones.stream - Si debe hacer streaming (default: false)
+ * @param {Function} opciones.onChunk - Callback para recibir chunks en streaming
+ * @returns {Promise<string>} - El texto generado completo
  */
 export async function generarTexto(prompt, opciones = {}) {
-  const { provider = 'groq' } = opciones;
+  const { provider = 'groq', stream = false, onChunk = null } = opciones;
+
+  // Validar que si se activa stream, se proporcione onChunk
+  if (stream && !onChunk) {
+    console.warn('⚠️ Stream activado pero no se proporcionó callback onChunk');
+  }
 
   // Intentar con el proveedor preferido primero
   try {
@@ -268,25 +351,53 @@ export async function generarTexto(prompt, opciones = {}) {
     }
   } catch (error) {
     console.error(`Error con ${provider}:`, error.message);
-    
-    // Si falla Groq, intentar con Ollama
+
+    // Si falla Groq, intentar con Ollama (sin streaming en fallback)
     if (provider === 'groq') {
       try {
         console.log('🔄 Intentando con Ollama como fallback...');
-        return await generarConOllama(prompt, opciones);
+        // Desactivar streaming en fallback para evitar problemas
+        const opcionesFallback = { ...opciones, stream: false };
+        return await generarConOllama(prompt, opcionesFallback);
       } catch (ollamaError) {
         console.error('❌ Ollama tampoco está disponible:', ollamaError.message);
         // Si ambos fallan, usar contenido de demostración
         console.log('📝 Usando modo demostración...');
-        return generarContenidoDemo(prompt);
+        const demo = generarContenidoDemo(prompt);
+
+        // Si estaba en modo stream, enviar el demo en chunks simulados
+        if (stream && onChunk) {
+          const palabras = demo.split(' ');
+          for (let i = 0; i < palabras.length; i++) {
+            const chunk = palabras[i] + (i < palabras.length - 1 ? ' ' : '');
+            onChunk(chunk);
+            // Pequeño delay para simular streaming
+            await new Promise(resolve => setTimeout(resolve, 10));
+          }
+        }
+
+        return demo;
       }
     } else {
       // Si falla Ollama, usar contenido de demostración directamente
       console.log('📝 Usando modo demostración...');
-      return generarContenidoDemo(prompt);
+      const demo = generarContenidoDemo(prompt);
+
+      // Si estaba en modo stream, enviar el demo en chunks simulados
+      if (stream && onChunk) {
+        const palabras = demo.split(' ');
+        for (let i = 0; i < palabras.length; i++) {
+          const chunk = palabras[i] + (i < palabras.length - 1 ? ' ' : '');
+          onChunk(chunk);
+          // Pequeño delay para simular streaming
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
+      }
+
+      return demo;
     }
   }
-  
+
   throw new Error(`Proveedor desconocido: ${provider}`);
 }
 

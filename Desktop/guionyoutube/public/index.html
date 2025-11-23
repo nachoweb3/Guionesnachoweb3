@@ -7,10 +7,23 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <div class="container">
         <header class="header">
-            <h1>🎬 Generador de Guiones Largos con IA</h1>
-            <p class="subtitle">Crea guiones profesionales de 30+ minutos - 100% GRATIS</p>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>🎬 Generador de Guiones Largos con IA</h1>
+                    <p class="subtitle">Crea guiones profesionales de 30+ minutos - 100% GRATIS</p>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema claro/oscuro">
+                        <span class="theme-icon sun">☀️</span>
+                        <span class="theme-icon moon">🌙</span>
+                    </button>
+                </div>
+            </div>
             <div class="provider-status" id="providerStatus">
                 <span class="status-label">Estado del sistema:</span>
                 <span class="status-indicator loading">Verificando...</span>
@@ -23,6 +36,9 @@
                 <button class="tab-button active" data-tab="generar">
                     📝 Generar Guion
                 </button>
+                <button class="tab-button" data-tab="historial">
+                    📜 Historial
+                </button>
                 <button class="tab-button" data-tab="whisper">
                     🎙️ Transcribir con Whisper
                 </button>
@@ -31,19 +47,52 @@
                 </button>
             </div>
 
+            <!-- Tab: Historial -->
+            <div class="tab-content" id="tab-historial">
+                <div class="form-card">
+                    <div class="historial-header">
+                        <h2>📜 Historial de Guiones</h2>
+                        <div class="historial-actions">
+                            <input
+                                type="search"
+                                id="buscarHistorial"
+                                placeholder="🔍 Buscar en historial..."
+                                class="search-input"
+                                aria-label="Buscar en historial"
+                            >
+                            <button class="btn btn-small btn-danger" id="limpiarHistorialBtn">
+                                🗑️ Limpiar Todo
+                            </button>
+                        </div>
+                    </div>
+                    <div id="historialContainer" class="historial-container">
+                        <div class="empty-state">
+                            <div class="empty-icon">📝</div>
+                            <h3>No hay guiones guardados</h3>
+                            <p>Los guiones que generes se guardarán automáticamente aquí</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Tab: Generar Guion -->
             <div class="tab-content active" id="tab-generar">
                 <div class="form-card">
                     <h2>Configuración del Guion</h2>
 
                     <div class="form-group">
-                        <label for="tema">Tema del Video *</label>
+                        <label for="tema">
+                            Tema del Video *
+                            <span class="tooltip" data-tooltip="Escribe un tema específico y claro. Ej: 'Criptomonedas en 2025', 'Cómo hacer SEO', etc.">ℹ️</span>
+                        </label>
                         <input
                             type="text"
                             id="tema"
                             placeholder="Ej: Inteligencia Artificial en 2025"
                             required
+                            aria-label="Tema del video"
                         >
+                        <span class="input-hint">Presiona Ctrl+Enter para generar rápidamente</span>
                     </div>
 
                     <div class="form-row">
@@ -219,10 +268,20 @@
                 <div class="results-header">
                     <h2>📄 Resultado</h2>
                     <div class="results-actions">
-                        <button class="btn btn-small" id="copiarBtn">📋 Copiar</button>
-                        <button class="btn btn-small" id="descargarBtn">💾 Descargar .txt</button>
-                        <button class="btn btn-small btn-danger" id="limpiarBtn">🗑️ Limpiar</button>
+                        <button class="btn btn-small" id="editarBtn" title="Editar guión">✏️ Editar</button>
+                        <button class="btn btn-small" id="guardarEdicionBtn" style="display: none;" title="Guardar cambios">💾 Guardar</button>
+                        <button class="btn btn-small" id="copiarBtn" title="Copiar al portapapeles">📋 Copiar</button>
+                        <button class="btn btn-small" id="descargarBtn" title="Descargar como .txt">💾 Descargar</button>
+                        <button class="btn btn-small btn-danger" id="limpiarBtn" title="Limpiar resultado">🗑️ Limpiar</button>
                     </div>
+                </div>
+
+                <!-- Barra de progreso para streaming -->
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Generando... 0%</div>
                 </div>
 
                 <div class="stats-bar" id="statsBar">
@@ -238,14 +297,34 @@
                         <span class="stat-label">Duración estimada:</span>
                         <span class="stat-value" id="duracionEstimada">0 min</span>
                     </div>
+                    <div class="stat save-indicator" id="saveIndicator" style="display: none;">
+                        <span class="stat-label">Estado:</span>
+                        <span class="stat-value saved">Guardado ✓</span>
+                    </div>
                 </div>
 
-                <div class="result-content" id="resultContent"></div>
+                <!-- Editor Toolbar -->
+                <div class="editor-toolbar" id="editorToolbar" style="display: none;">
+                    <button class="toolbar-btn" data-command="bold" title="Negrita (Ctrl+B)"><strong>B</strong></button>
+                    <button class="toolbar-btn" data-command="italic" title="Cursiva (Ctrl+I)"><em>I</em></button>
+                    <button class="toolbar-btn" data-command="insertUnorderedList" title="Lista">• Lista</button>
+                    <button class="toolbar-btn" data-command="undo" title="Deshacer (Ctrl+Z)">↶</button>
+                    <button class="toolbar-btn" data-command="redo" title="Rehacer (Ctrl+Y)">↷</button>
+                </div>
+
+                <div class="result-content" id="resultContent" contenteditable="false"></div>
             </div>
 
-            <!-- Loading overlay -->
+            <!-- Loading overlay con skeleton -->
             <div class="loading-overlay" id="loadingOverlay" style="display: none;">
-                <div class="spinner"></div>
+                <div class="loading-skeleton">
+                    <div class="skeleton-header"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line"></div>
+                </div>
                 <p class="loading-text" id="loadingText">Generando guion...</p>
                 <p class="loading-subtext">Esto puede tomar 30-60 segundos para guiones largos</p>
             </div>
