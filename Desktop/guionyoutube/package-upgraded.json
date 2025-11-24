@@ -1,0 +1,78 @@
+{
+  "name": "guion-youtube-ia-pro",
+  "version": "2.0.0",
+  "description": "Plataforma profesional de generación de guiones con IA - Multi-usuario con características avanzadas",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "build": "echo 'Build complete'",
+    "vercel-build": "echo 'Vercel build complete'",
+    "netlify-build": "echo 'Netlify build complete'",
+    "deploy": "node deploy.js",
+    "migrate": "node database/migrate.js",
+    "seed": "node database/seed.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "youtube",
+    "guion",
+    "ia",
+    "whisper",
+    "groq",
+    "ollama",
+    "colaboracion",
+    "analytics",
+    "saas"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "groq-sdk": "^0.3.3",
+    "node-fetch": "^3.3.2",
+
+    "better-sqlite3": "^9.2.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6",
+
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+
+    "openai": "^4.24.1",
+    "replicate": "^0.25.2",
+
+    "googleapis": "^131.0.0",
+    "google-auth-library": "^9.4.1",
+
+    "stripe": "^14.10.0",
+
+    "pdfkit": "^0.14.0",
+    "docx": "^8.5.0",
+    "mammoth": "^1.6.0",
+
+    "sharp": "^0.33.1",
+    "multer": "^1.4.5-lts.1",
+
+    "redis": "^4.6.11",
+    "bull": "^4.12.0",
+
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+
+    "winston": "^3.11.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6"
+  }
+}

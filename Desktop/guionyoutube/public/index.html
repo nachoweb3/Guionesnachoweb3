@@ -14,8 +14,8 @@
         <header class="header">
             <div class="header-content">
                 <div class="header-left">
-                    <h1>🎬 Generador de Guiones Largos con IA</h1>
-                    <p class="subtitle">Crea guiones profesionales de 30+ minutos - 100% GRATIS</p>
+                    <h1>🎯 Generador Universal de Guiones con IA</h1>
+                    <p class="subtitle">Crea guiones para YouTube, Libros, Películas, Videojuegos y Artículos - 100% GRATIS</p>
                 </div>
                 <div class="header-right">
                     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema claro/oscuro">
@@ -34,16 +34,28 @@
             <!-- Tabs de navegación -->
             <div class="tabs">
                 <button class="tab-button active" data-tab="generar">
-                    📝 Generar Guion
+                    📝 YouTube
                 </button>
                 <button class="tab-button" data-tab="historial">
                     📜 Historial
                 </button>
                 <button class="tab-button" data-tab="whisper">
-                    🎙️ Transcribir con Whisper
+                    🎙️ Whisper
                 </button>
                 <button class="tab-button" data-tab="investigar">
-                    🔍 Investigar Tema
+                    🔍 Investigar
+                </button>
+                <button class="tab-button" data-tab="libros">
+                    📚 Libros
+                </button>
+                <button class="tab-button" data-tab="peliculas">
+                    🎬 Películas
+                </button>
+                <button class="tab-button" data-tab="videojuegos">
+                    🎮 Videojuegos
+                </button>
+                <button class="tab-button" data-tab="articulos">
+                    📝 Artículos
                 </button>
             </div>
 
@@ -259,6 +271,438 @@
                     <div class="info-box">
                         <strong>💡 Uso:</strong> La investigación te ayudará a crear guiones más completos e informados.
                         Incluye contexto, subtemas, preguntas frecuentes y más.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Libros -->
+            <div class="tab-content" id="tab-libros">
+                <div class="form-card">
+                    <h2>📚 Generador de Guiones para Libros</h2>
+
+                    <div class="form-group">
+                        <label for="tituloLibro">Título del Libro *</label>
+                        <input
+                            type="text"
+                            id="tituloLibro"
+                            placeholder="Ej: El Último Refugio"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="generoLibro">Género</label>
+                        <select id="generoLibro">
+                            <option value="ficcion">Ficción</option>
+                            <option value="no-ficcion">No Ficción</option>
+                            <option value="fantasia">Fantasía</option>
+                            <option value="ciencia-ficcion">Ciencia Ficción</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="romance">Romance</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temaLibro">Tema/Concepto *</label>
+                        <textarea
+                            id="temaLibro"
+                            rows="4"
+                            placeholder="Describe el tema central, la trama o el concepto principal del libro..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="numCapitulos">Número de Capítulos</label>
+                            <input
+                                type="number"
+                                id="numCapitulos"
+                                value="20"
+                                min="5"
+                                max="50"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="palabrasPorCapitulo">Palabras por Capítulo</label>
+                            <input
+                                type="number"
+                                id="palabrasPorCapitulo"
+                                value="3000"
+                                min="1000"
+                                max="10000"
+                                step="500"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tonoLibro">Tono</label>
+                        <select id="tonoLibro">
+                            <option value="narrativo">Narrativo</option>
+                            <option value="descriptivo">Descriptivo</option>
+                            <option value="poetico">Poético</option>
+                            <option value="directo">Directo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirPersonajesLibro" checked>
+                                Incluir Personajes
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirSinopsis" checked>
+                                Incluir Sinopsis
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirArcoNarrativo" checked>
+                                Incluir Arco Narrativo
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="generarLibroBtn">
+                        📚 Generar Guion de Libro
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Un libro de 20 capítulos con 3,000 palabras cada uno contendrá aproximadamente 60,000 palabras (200 páginas).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Películas -->
+            <div class="tab-content" id="tab-peliculas">
+                <div class="form-card">
+                    <h2>🎬 Generador de Guiones para Películas</h2>
+
+                    <div class="form-group">
+                        <label for="tituloPelicula">Título de la Película *</label>
+                        <input
+                            type="text"
+                            id="tituloPelicula"
+                            placeholder="Ej: La Última Esperanza"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="generoPelicula">Género</label>
+                        <select id="generoPelicula">
+                            <option value="drama">Drama</option>
+                            <option value="comedia">Comedia</option>
+                            <option value="accion">Acción</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="terror">Terror</option>
+                            <option value="ciencia-ficcion">Ciencia Ficción</option>
+                            <option value="romance">Romance</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temaPelicula">Tema/Concepto *</label>
+                        <textarea
+                            id="temaPelicula"
+                            rows="4"
+                            placeholder="Describe la historia, el conflicto principal y el concepto de la película..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="duracionPelicula">Duración (minutos)</label>
+                            <input
+                                type="number"
+                                id="duracionPelicula"
+                                value="90"
+                                min="30"
+                                max="180"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="formatoPelicula">Formato</label>
+                            <select id="formatoPelicula">
+                                <option value="largometraje">Largometraje</option>
+                                <option value="cortometraje">Cortometraje</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tonoPelicula">Tono</label>
+                        <select id="tonoPelicula">
+                            <option value="serio">Serio</option>
+                            <option value="comico">Cómico</option>
+                            <option value="epico">Épico</option>
+                            <option value="intimista">Intimista</option>
+                            <option value="experimental">Experimental</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirTratamiento" checked>
+                                Incluir Tratamiento
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirPersonajesPelicula" checked>
+                                Incluir Personajes
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirEscenas" checked>
+                                Incluir Escenas
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="generarPeliculaBtn">
+                        🎬 Generar Guion de Película
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Un guion de largometraje de 90 minutos contiene aproximadamente 90-120 páginas en formato estándar.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Videojuegos -->
+            <div class="tab-content" id="tab-videojuegos">
+                <div class="form-card">
+                    <h2>🎮 Generador de GDD (Game Design Document)</h2>
+
+                    <div class="form-group">
+                        <label for="tituloJuego">Título del Juego *</label>
+                        <input
+                            type="text"
+                            id="tituloJuego"
+                            placeholder="Ej: Legends of Tomorrow"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="generoJuego">Género</label>
+                        <select id="generoJuego">
+                            <option value="accion">Acción</option>
+                            <option value="rpg">RPG</option>
+                            <option value="estrategia">Estrategia</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="puzzle">Puzzle</option>
+                            <option value="simulacion">Simulación</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temaJuego">Tema/Concepto *</label>
+                        <textarea
+                            id="temaJuego"
+                            rows="4"
+                            placeholder="Describe el concepto del juego, la historia, y las mecánicas principales..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="plataformaJuego">Plataforma</label>
+                            <select id="plataformaJuego">
+                                <option value="pc">PC</option>
+                                <option value="consolas">Consolas</option>
+                                <option value="mobile">Mobile</option>
+                                <option value="multiplataforma">Multiplataforma</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipoJuego">Tipo de Juego</label>
+                            <select id="tipoJuego">
+                                <option value="single-player">Single-player</option>
+                                <option value="multiplayer">Multiplayer</option>
+                                <option value="co-op">Co-op</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duracionJuego">Duración Estimada (horas)</label>
+                        <input
+                            type="number"
+                            id="duracionJuego"
+                            value="20"
+                            min="5"
+                            max="200"
+                        >
+                    </div>
+
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirNarrativa" checked>
+                                Incluir Narrativa
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirMecanicas" checked>
+                                Incluir Mecánicas
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirNiveles" checked>
+                                Incluir Niveles
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirPersonajesJuego" checked>
+                                Incluir Personajes
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="generarJuegoBtn">
+                        🎮 Generar GDD
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Un GDD completo incluye visión del juego, mecánicas, narrativa, personajes, niveles y arte conceptual.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Artículos -->
+            <div class="tab-content" id="tab-articulos">
+                <div class="form-card">
+                    <h2>📝 Generador de Artículos</h2>
+
+                    <div class="form-group">
+                        <label for="tituloArticulo">Título del Artículo *</label>
+                        <input
+                            type="text"
+                            id="tituloArticulo"
+                            placeholder="Ej: Cómo crear contenido viral en 2025"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipoArticulo">Tipo</label>
+                        <select id="tipoArticulo">
+                            <option value="blog">Blog</option>
+                            <option value="tutorial">Tutorial</option>
+                            <option value="opinion">Opinión</option>
+                            <option value="investigacion">Investigación</option>
+                            <option value="noticia">Noticia</option>
+                            <option value="guia">Guía</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temaArticulo">Tema *</label>
+                        <textarea
+                            id="temaArticulo"
+                            rows="4"
+                            placeholder="Describe el tema principal y los puntos clave que quieres cubrir..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="palabrasArticulo">Palabras Objetivo</label>
+                            <input
+                                type="number"
+                                id="palabrasArticulo"
+                                value="2000"
+                                min="500"
+                                max="10000"
+                                step="100"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nichoArticulo">Nicho</label>
+                            <select id="nichoArticulo">
+                                <option value="general">General</option>
+                                <option value="tecnologia">Tecnología</option>
+                                <option value="negocios">Negocios</option>
+                                <option value="salud">Salud</option>
+                                <option value="educacion">Educación</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finanzas">Finanzas</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tonoArticulo">Tono</label>
+                            <select id="tonoArticulo">
+                                <option value="profesional">Profesional</option>
+                                <option value="casual">Casual</option>
+                                <option value="academico">Académico</option>
+                                <option value="conversacional">Conversacional</option>
+                                <option value="tecnico">Técnico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="audienciaArticulo">Audiencia</label>
+                            <select id="audienciaArticulo">
+                                <option value="general">General</option>
+                                <option value="principiantes">Principiantes</option>
+                                <option value="profesionales">Profesionales</option>
+                                <option value="expertos">Expertos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirSEO" checked>
+                                Incluir SEO
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirImagenes" checked>
+                                Incluir Sugerencias de Imágenes
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="incluirCTA" checked>
+                                Incluir CTA
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="generarArticuloBtn">
+                        📝 Generar Artículo
+                    </button>
+
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Un artículo SEO optimizado de 2,000 palabras es ideal para ranking en Google.
                     </div>
                 </div>
             </div>

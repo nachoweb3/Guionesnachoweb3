@@ -129,6 +129,12 @@ function initializeButtons() {
     // Investigar
     document.getElementById('investigarBtn').addEventListener('click', investigarTema);
 
+    // Nuevos tipos de contenido
+    document.getElementById('generarLibroBtn').addEventListener('click', generarLibro);
+    document.getElementById('generarPeliculaBtn').addEventListener('click', generarPelicula);
+    document.getElementById('generarVideojuegoBtn').addEventListener('click', generarVideojuego);
+    document.getElementById('generarArticuloBtn').addEventListener('click', generarArticulo);
+
     // Acciones de resultados
     document.getElementById('copiarBtn').addEventListener('click', copiarResultado);
     document.getElementById('descargarBtn').addEventListener('click', descargarResultado);
@@ -365,7 +371,7 @@ function updateProgress(percent) {
 // ============================================
 // HISTORIAL
 // ============================================
-function saveToHistorial(tema, contenido) {
+function saveToHistorial(tema, contenido, tipo = 'youtube', metadata = {}) {
     const historial = getHistorial();
 
     const preview = contenido.substring(0, 200).trim() + '...';
@@ -378,7 +384,9 @@ function saveToHistorial(tema, contenido) {
         contenido,
         preview,
         palabras,
-        caracteres: contenido.length
+        caracteres: contenido.length,
+        tipo: tipo, // youtube, libro, pelicula, videojuego, articulo
+        metadata: metadata // Información adicional específica del tipo
     };
 
     // Agregar al inicio y limitar a 10
@@ -441,11 +449,61 @@ function loadHistorial(filter = '') {
             minute: '2-digit'
         });
 
+        // Iconos y etiquetas según el tipo
+        const tipoIcons = {
+            youtube: '📝',
+            libro: '📚',
+            pelicula: '🎬',
+            videojuego: '🎮',
+            articulo: '📄'
+        };
+
+        const tipoLabels = {
+            youtube: 'YouTube',
+            libro: 'Libro',
+            pelicula: 'Película',
+            videojuego: 'Videojuego',
+            articulo: 'Artículo'
+        };
+
+        const tipo = item.tipo || 'youtube';
+        const icono = tipoIcons[tipo] || '📝';
+        const tipoLabel = tipoLabels[tipo] || 'YouTube';
+
+        // Metadata adicional según el tipo
+        let metadataHTML = '';
+        if (item.metadata) {
+            if (tipo === 'libro' && item.metadata.genero) {
+                metadataHTML += `<span class="historial-stat">📖 ${item.metadata.genero}</span>`;
+            }
+            if (tipo === 'libro' && item.metadata.numeroCapitulos) {
+                metadataHTML += `<span class="historial-stat">📑 ${item.metadata.numeroCapitulos} capítulos</span>`;
+            }
+            if (tipo === 'pelicula' && item.metadata.genero) {
+                metadataHTML += `<span class="historial-stat">🎭 ${item.metadata.genero}</span>`;
+            }
+            if (tipo === 'pelicula' && item.metadata.duracion) {
+                metadataHTML += `<span class="historial-stat">⏱️ ${item.metadata.duracion} min</span>`;
+            }
+            if (tipo === 'videojuego' && item.metadata.genero) {
+                metadataHTML += `<span class="historial-stat">🎯 ${item.metadata.genero}</span>`;
+            }
+            if (tipo === 'videojuego' && item.metadata.numeroNiveles) {
+                metadataHTML += `<span class="historial-stat">🎮 ${item.metadata.numeroNiveles} niveles</span>`;
+            }
+            if (tipo === 'articulo' && item.metadata.tipo) {
+                metadataHTML += `<span class="historial-stat">📰 ${item.metadata.tipo}</span>`;
+            }
+        }
+
         return `
             <div class="historial-item">
                 <div class="historial-item-header">
                     <div>
-                        <div class="historial-item-title">${escapeHtml(item.tema)}</div>
+                        <div class="historial-item-title">
+                            ${icono} ${escapeHtml(item.tema)}
+                            <span class="badge badge-${tipo}" style="margin-left: 8px; font-size: 0.75em; padding: 2px 8px; border-radius: 12px; background: var(--primary-color); color: white;">${tipoLabel}</span>
+                        </div>
                         <div class="historial-item-date">${fechaFormateada}</div>
                     </div>
                 </div>
@@ -460,6 +518,7 @@ function loadHistorial(filter = '') {
                     <span class="historial-stat">
                         ⏱️ <strong>~${Math.ceil(item.palabras / 250)}</strong> min
                     </span>
+                    ${metadataHTML}
                 </div>
                 <div class="historial-item-actions">
                     <button class="btn btn-small btn-primary" onclick="verHistorialItem(${item.id})">
@@ -751,6 +810,200 @@ async function investigarTema() {
         showToast(`Error: ${error.message}`, 'error');
         console.error('Error:', error);
     }
+}
+
+// ============================================
+// GENERAR LIBRO
+// ============================================
+async function generarLibro() {
+    const titulo = document.getElementById('tituloLibro').value.trim();
+    const tema = document.getElementById('temaLibro').value.trim();
+    const genero = document.getElementById('generoLibro').value;
+    const numeroCapitulos = parseInt(document.getElementById('numeroCapitulos').value);
+    const palabrasPorCapitulo = parseInt(document.getElementById('palabrasPorCapitulo').value);
+    const tono = document.getElementById('tonoLibro').value;
+    const provider = document.getElementById('provider').value;
+    const incluirPersonajes = document.getElementById('incluirPersonajesLibro').checked;
+    const incluirSinopsis = document.getElementById('incluirSinopsisLibro').checked;
+    const incluirArcoNarrativo = document.getElementById('incluirArcoNarrativo').checked;
+
+    if (!titulo || !tema) {
+        showToast('Por favor completa título y tema', 'error');
+        return;
+    }
+
+    try {
+        showLoading('Generando guion de libro...');
+
+        const response = await fetch('/api/generar-libro', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                titulo, tema, genero, numeroCapitulos, palabrasPorCapitulo,
+                tono, provider, incluirPersonajes, incluirSinopsis, incluirArcoNarrativo
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.mensaje || 'Error al generar guion');
+
+        hideLoading();
+        displayResult(data.guion, 'Libro');
+        saveToHistorial(titulo, data.guion, 'libro', { genero, numeroCapitulos });
+        showToast('¡Guion de libro generado exitosamente!', 'success');
+    } catch (error) {
+        hideLoading();
+        showToast(error.message, 'error');
+    }
+}
+
+// ============================================
+// GENERAR PELÍCULA
+// ============================================
+async function generarPelicula() {
+    const titulo = document.getElementById('tituloPelicula').value.trim();
+    const sinopsis = document.getElementById('sinopsisPelicula').value.trim();
+    const genero = document.getElementById('generoPelicula').value;
+    const duracion = parseInt(document.getElementById('duracionPelicula').value);
+    const numeroActos = parseInt(document.getElementById('numeroActos').value);
+    const estilo = document.getElementById('estiloPelicula').value;
+    const provider = document.getElementById('provider').value;
+    const incluirDialogos = document.getElementById('incluirDialogos').checked;
+    const incluirAcotaciones = document.getElementById('incluirAcotaciones').checked;
+    const incluirDescripcionEscenas = document.getElementById('incluirDescripcionEscenas').checked;
+
+    if (!titulo || !sinopsis) {
+        showToast('Por favor completa título y sinopsis', 'error');
+        return;
+    }
+
+    try {
+        showLoading('Generando guion de película...');
+
+        const response = await fetch('/api/generar-pelicula', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                titulo, sinopsis, genero, duracion, numeroActos,
+                estilo, provider, incluirDialogos, incluirAcotaciones, incluirDescripcionEscenas
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.mensaje || 'Error al generar guion');
+
+        hideLoading();
+        displayResult(data.guion, 'Película');
+        saveToHistorial(titulo, data.guion, 'pelicula', { genero, duracion });
+        showToast('¡Guion de película generado exitosamente!', 'success');
+    } catch (error) {
+        hideLoading();
+        showToast(error.message, 'error');
+    }
+}
+
+// ============================================
+// GENERAR VIDEOJUEGO
+// ============================================
+async function generarVideojuego() {
+    const titulo = document.getElementById('tituloVideojuego').value.trim();
+    const concepto = document.getElementById('conceptoVideojuego').value.trim();
+    const genero = document.getElementById('generoVideojuego').value;
+    const plataforma = document.getElementById('plataformaVideojuego').value;
+    const numeroNiveles = parseInt(document.getElementById('numeroNiveles').value);
+    const mecanicas = document.getElementById('mecanicasVideojuego').value.trim();
+    const provider = document.getElementById('provider').value;
+    const incluirHistoria = document.getElementById('incluirHistoria').checked;
+    const incluirPersonajesJuego = document.getElementById('incluirPersonajesJuego').checked;
+    const incluirNivelesDetallados = document.getElementById('incluirNivelesDetallados').checked;
+
+    if (!titulo || !concepto) {
+        showToast('Por favor completa título y concepto', 'error');
+        return;
+    }
+
+    try {
+        showLoading('Generando guion de videojuego...');
+
+        const response = await fetch('/api/generar-videojuego', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                titulo, concepto, genero, plataforma, numeroNiveles,
+                mecanicas, provider, incluirHistoria, incluirPersonajesJuego, incluirNivelesDetallados
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.mensaje || 'Error al generar guion');
+
+        hideLoading();
+        displayResult(data.guion, 'Videojuego');
+        saveToHistorial(titulo, data.guion, 'videojuego', { genero, numeroNiveles });
+        showToast('¡Guion de videojuego generado exitosamente!', 'success');
+    } catch (error) {
+        hideLoading();
+        showToast(error.message, 'error');
+    }
+}
+
+// ============================================
+// GENERAR ARTÍCULO
+// ============================================
+async function generarArticulo() {
+    const titulo = document.getElementById('tituloArticulo').value.trim();
+    const tema = document.getElementById('temaArticulo').value.trim();
+    const tipo = document.getElementById('tipoArticulo').value;
+    const palabrasObjetivo = parseInt(document.getElementById('palabrasArticulo').value);
+    const numeroSecciones = parseInt(document.getElementById('numeroSecciones').value);
+    const tono = document.getElementById('tonoArticulo').value;
+    const provider = document.getElementById('provider').value;
+    const incluirIntroduccion = document.getElementById('incluirIntroduccion').checked;
+    const incluirConclusion = document.getElementById('incluirConclusion').checked;
+    const incluirReferencias = document.getElementById('incluirReferencias').checked;
+
+    if (!titulo || !tema) {
+        showToast('Por favor completa título y tema', 'error');
+        return;
+    }
+
+    try {
+        showLoading('Generando artículo...');
+
+        const response = await fetch('/api/generar-articulo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                titulo, tema, tipo, palabrasObjetivo, numeroSecciones,
+                tono, provider, incluirIntroduccion, incluirConclusion, incluirReferencias
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.mensaje || 'Error al generar artículo');
+
+        hideLoading();
+        displayResult(data.guion, 'Artículo');
+        saveToHistorial(titulo, data.guion, 'articulo', { tipo, palabrasObjetivo });
+        showToast('¡Artículo generado exitosamente!', 'success');
+    } catch (error) {
+        hideLoading();
+        showToast(error.message, 'error');
+    }
+}
+
+// ============================================
+// MOSTRAR RESULTADO (HELPER)
+// ============================================
+function displayResult(contenido, tipoContenido) {
+    currentResult = contenido;
+    const palabras = contarPalabras(contenido);
+    const caracteres = contenido.length;
+    mostrarResultado(contenido, palabras, caracteres);
 }
 
 // ============================================
