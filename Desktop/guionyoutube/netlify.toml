@@ -14,10 +14,12 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# SPA fallback - pero no para assets ni funciones
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Headers for better performance
 [[headers]]
