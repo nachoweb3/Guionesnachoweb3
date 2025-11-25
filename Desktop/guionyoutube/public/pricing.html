@@ -236,7 +236,7 @@
         // Cargar pricing desde API
         async function loadPricing() {
             try {
-                const response = await fetch('/api/pricing');
+                const response = await fetch('/.netlify/functions/pricing');
                 const data = await response.json();
                 renderPricingCards(data.tiers);
             } catch (error) {
@@ -298,7 +298,7 @@
 
             try {
                 // Crear sesión de Stripe Checkout
-                const response = await fetch('/api/stripe/create-checkout', {
+                const response = await fetch('/.netlify/functions/create-checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
