@@ -2,7 +2,7 @@
  * Netlify Function: Obtener configuración pública de Stripe
  */
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
