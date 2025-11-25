@@ -21,7 +21,11 @@ class DeFiFeatures {
     }
 
     async setupWeb3() {
+        // Only detect if wallet is available, but don't auto-connect
         if (typeof window.ethereum !== 'undefined') {
+            console.log('Wallet detected, waiting for user to connect...');
+            // Don't auto-request accounts - let user click the connect button
+            /*
             try {
                 // Request account access
                 await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -37,9 +41,11 @@ class DeFiFeatures {
                 console.error('Web3 connection failed:', error);
                 this.showWeb3Error();
             }
+            */
         } else {
             console.log('MetaMask not detected');
-            this.showMetaMaskPrompt();
+            // Don't show prompt automatically
+            // this.showMetaMaskPrompt();
         }
     }
 
