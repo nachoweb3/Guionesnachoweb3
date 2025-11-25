@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pago Exitoso! - GuionIA</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .success-title {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .features-box {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .features-box h3 {
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .features-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-box li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 8px;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: var(--bg-secondary);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .loading {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">🎉</div>
+        <h1 class="success-title">¡Pago Exitoso!</h1>
+        <p class="success-message" id="welcomeMessage">
+            Bienvenido a GuionIA <span id="tierName"></span>
+        </p>
+
+        <div class="features-box" id="featuresBox" style="display: none;">
+            <h3>✨ Ahora puedes:</h3>
+            <ul id="featuresList">
+                <!-- Se llena dinámicamente -->
+            </ul>
+        </div>
+
+        <div class="loading" id="loading">
+            <p>⏳ Activando tu suscripción...</p>
+        </div>
+
+        <div id="actions" style="display: none;">
+            <a href="/" class="cta-button">
+                🚀 Comenzar a Crear
+            </a>
+            <a href="mailto:support@example.com" class="cta-button secondary">
+                📧 Contactar Soporte
+            </a>
+        </div>
+
+        <p style="margin-top: 32px; color: var(--text-secondary); font-size: 0.9rem;">
+            📧 Te hemos enviado un email de confirmación con los detalles de tu suscripción.
+        </p>
+    </div>
+
+    <script>
+        async function verifyPurchase() {
+            // Obtener session_id de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const sessionId = urlParams.get('session_id');
+
+            if (!sessionId) {
+                document.getElementById('welcomeMessage').textContent =
+                    'No se pudo verificar el pago. Por favor contacta a soporte.';
+                document.getElementById('loading').style.display = 'none';
+                return;
+            }
+
+            try {
+                // Verificar el pago (esto debería llamar a tu backend)
+                // Por ahora, mostramos mensaje de éxito genérico
+
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('tierName').textContent = 'PRO';
+                    document.getElementById('featuresBox').style.display = 'block';
+                    document.getElementById('actions').style.display = 'block';
+
+                    // Mostrar features
+                    const features = [
+                        '✅ 50 generaciones por día',
+                        '✅ Guiones hasta 120 minutos',
+                        '✅ Todos los formatos (Libros, Películas, Juegos)',
+                        '✅ Sin marca de agua',
+                        '✅ Exportación avanzada',
+                        '✅ Soporte por email'
+                    ];
+
+                    const featuresList = document.getElementById('featuresList');
+                    features.forEach(feature => {
+                        const li = document.createElement('li');
+                        li.textContent = feature;
+                        featuresList.appendChild(li);
+                    });
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error verificando pago:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('welcomeMessage').textContent =
+                    'Hubo un error verificando tu pago. Por favor contacta a soporte.';
+            }
+        }
+
+        verifyPurchase();
+    </script>
+</body>
+</html>

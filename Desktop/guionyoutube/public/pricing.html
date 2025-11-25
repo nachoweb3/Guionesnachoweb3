@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - GuionIA</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .pricing-header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pricing-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .toggle-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--border);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tier-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tier-price span {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        .cta-button.current {
+            background: var(--border);
+            color: var(--text-secondary);
+            cursor: default;
+        }
+
+        .cta-button.current:hover {
+            transform: none;
+        }
+
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h1>💎 Elige tu Plan</h1>
+            <p>Genera contenido ilimitado con IA. Sin trucos, sin letra pequeña.</p>
+        </div>
+
+        <div class="billing-toggle">
+            <button class="toggle-btn active" data-billing="monthly">Mensual</button>
+            <button class="toggle-btn" data-billing="yearly">
+                Anual
+                <span style="color: var(--success); margin-left: 8px;">💰 Ahorra hasta $198/año</span>
+            </button>
+        </div>
+
+        <div class="pricing-grid" id="pricingGrid">
+            <!-- Cards se generan dinámicamente -->
+        </div>
+
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 32px;">❓ Preguntas Frecuentes</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo cancelar en cualquier momento?</div>
+                <div class="faq-answer">Sí, puedes cancelar tu suscripción cuando quieras. No hay penalizaciones ni cargos ocultos.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Qué métodos de pago aceptan?</div>
+                <div class="faq-answer">Aceptamos todas las tarjetas de crédito y débito principales a través de Stripe (Visa, Mastercard, American Express).</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Los guiones generados son únicos?</div>
+                <div class="faq-answer">Sí, cada guion es generado de forma única usando IA avanzada. No hay dos guiones iguales.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">¿Puedo usar el contenido generado comercialmente?</div>
+                <div class="faq-answer">Absolutamente. Todo el contenido generado te pertenece 100% y puedes usarlo como quieras, incluso comercialmente.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let billingPeriod = 'monthly';
+
+        // Cargar pricing desde API
+        async function loadPricing() {
+            try {
+                const response = await fetch('/api/pricing');
+                const data = await response.json();
+                renderPricingCards(data.tiers);
+            } catch (error) {
+                console.error('Error cargando pricing:', error);
+            }
+        }
+
+        function renderPricingCards(tiers) {
+            const grid = document.getElementById('pricingGrid');
+            grid.innerHTML = '';
+
+            tiers.forEach(tier => {
+                const price = billingPeriod === 'monthly' ? tier.price.monthly : tier.price.yearly;
+                const isYearly = billingPeriod === 'yearly';
+                const savings = isYearly && tier.price.monthly > 0 ? (tier.price.monthly * 12) - tier.price.yearly : 0;
+
+                const card = document.createElement('div');
+                card.className = 'pricing-card' + (tier.popular ? ' popular' : '');
+
+                card.innerHTML = `
+                    ${tier.popular ? '<div class="popular-badge">⭐ Más Popular</div>' : ''}
+                    <div class="tier-name">${tier.name}</div>
+                    <div class="tier-price">
+                        $${price}<span>${isYearly ? '/año' : '/mes'}</span>
+                    </div>
+                    ${savings > 0 ? `<div class="savings-badge">Ahorras $${savings}</div>` : ''}
+                    <ul class="features-list">
+                        ${tier.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <button class="cta-button ${tier.id === 'free' ? 'current' : ''}"
+                            onclick="selectPlan('${tier.id}', '${billingPeriod}')">
+                        ${tier.id === 'free' ? 'Plan Actual' : 'Comenzar Ahora'}
+                    </button>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Toggle billing period
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                billingPeriod = btn.dataset.billing;
+                loadPricing();
+            });
+        });
+
+        // Select plan - STRIPE CHECKOUT REAL
+        async function selectPlan(tier, billing) {
+            if (tier === 'free') return;
+
+            // Mostrar loading
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '⏳ Procesando...';
+            button.disabled = true;
+
+            try {
+                // Crear sesión de Stripe Checkout
+                const response = await fetch('/api/stripe/create-checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tier,
+                        billingPeriod: billingPeriod
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success && data.url) {
+                    // Redirigir a Stripe Checkout
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || 'Error al crear sesión de pago');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al procesar el pago. Por favor intenta de nuevo.');
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Cargar pricing al inicio
+        loadPricing();
+    </script>
+</body>
+</html>
