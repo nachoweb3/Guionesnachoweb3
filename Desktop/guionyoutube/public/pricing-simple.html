@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - GuionIA</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .pricing-header h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        .billing-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .toggle-btn {
+            padding: 12px 24px;
+            border: 2px solid #ccc;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .toggle-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        .pricing-card.popular {
+            border-color: #667eea;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        }
+        .popular-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+        .tier-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .tier-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .tier-price span {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            text-align: left;
+        }
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cta-button:hover {
+            background: #5568d3;
+            transform: scale(1.02);
+        }
+        .cta-button.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h1>💎 Elige tu Plan</h1>
+            <p>Genera contenido ilimitado con IA</p>
+        </div>
+
+        <div class="billing-toggle">
+            <button class="toggle-btn active" onclick="changeBilling('monthly')">Mensual</button>
+            <button class="toggle-btn" onclick="changeBilling('yearly')">Anual (Ahorra hasta $198)</button>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Free -->
+            <div class="pricing-card">
+                <div class="tier-name">Free</div>
+                <div class="tier-price">$0<span>/mes</span></div>
+                <ul class="features-list">
+                    <li>✅ 3 generaciones por día</li>
+                    <li>✅ Guiones hasta 30 minutos</li>
+                    <li>✅ Formato YouTube</li>
+                    <li>❌ Marca de agua incluida</li>
+                    <li>❌ Sin soporte</li>
+                </ul>
+                <button class="cta-button disabled">Plan Actual</button>
+            </div>
+
+            <!-- Pro -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">⭐ Más Popular</div>
+                <div class="tier-name">Pro</div>
+                <div class="tier-price">
+                    <span id="proPriceDisplay">$19</span><span id="proIntervalDisplay">/mes</span>
+                </div>
+                <ul class="features-list">
+                    <li>✅ 50 generaciones por día</li>
+                    <li>✅ Guiones hasta 120 minutos</li>
+                    <li>✅ Todos los formatos</li>
+                    <li>✅ Sin marca de agua</li>
+                    <li>✅ Exportación avanzada</li>
+                    <li>✅ Soporte por email</li>
+                    <li id="proSavings" style="display:none;">🎁 Ahorras $38</li>
+                </ul>
+                <button class="cta-button" onclick="checkout('pro')">Comenzar Ahora</button>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="pricing-card">
+                <div class="tier-name">Enterprise</div>
+                <div class="tier-price">
+                    <span id="enterprisePriceDisplay">$99</span><span id="enterpriseIntervalDisplay">/mes</span>
+                </div>
+                <ul class="features-list">
+                    <li>✅ Generaciones ilimitadas</li>
+                    <li>✅ Sin límite de duración</li>
+                    <li>✅ Todos los formatos</li>
+                    <li>✅ API access</li>
+                    <li>✅ Whitelabel</li>
+                    <li>✅ Soporte prioritario</li>
+                    <li id="enterpriseSavings" style="display:none;">🎁 Ahorras $198</li>
+                </ul>
+                <button class="cta-button" onclick="checkout('enterprise')">Comenzar Ahora</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración de Stripe
+        const STRIPE_PUBLISHABLE_KEY = 'pk_live_51RDFRRAVSDGmQNlnILM9QDzyURh1ZJywgmNZUPMGkyy0PNX2EukVeE5EQCxjRbv2PwtpPAZwONRErbD1uSXUARtF00YF8UI7ev';
+
+        const PRICE_IDS = {
+            pro: {
+                monthly: 'price_1SXK4XAVSDGmQNln8KZsYwlt',
+                yearly: 'price_1SXK2oAVSDGmQNlngUuIynRz'
+            },
+            enterprise: {
+                monthly: 'price_1SXK67AVSDGmQNlnZEdLAqmm',
+                yearly: 'price_1SXK67AVSDGmQNlnZEdLAqmm'
+            }
+        };
+
+        let currentBilling = 'monthly';
+        const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+        function changeBilling(billing) {
+            currentBilling = billing;
+
+            // Update toggle buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update prices
+            if (billing === 'yearly') {
+                document.getElementById('proPriceDisplay').textContent = '$190';
+                document.getElementById('proIntervalDisplay').textContent = '/año';
+                document.getElementById('proSavings').style.display = 'block';
+
+                document.getElementById('enterprisePriceDisplay').textContent = '$990';
+                document.getElementById('enterpriseIntervalDisplay').textContent = '/año';
+                document.getElementById('enterpriseSavings').style.display = 'block';
+            } else {
+                document.getElementById('proPriceDisplay').textContent = '$19';
+                document.getElementById('proIntervalDisplay').textContent = '/mes';
+                document.getElementById('proSavings').style.display = 'none';
+
+                document.getElementById('enterprisePriceDisplay').textContent = '$99';
+                document.getElementById('enterpriseIntervalDisplay').textContent = '/mes';
+                document.getElementById('enterpriseSavings').style.display = 'none';
+            }
+        }
+
+        async function checkout(tier) {
+            const priceId = PRICE_IDS[tier][currentBilling];
+
+            try {
+                const { error } = await stripe.redirectToCheckout({
+                    lineItems: [{ price: priceId, quantity: 1 }],
+                    mode: 'subscription',
+                    successUrl: window.location.origin + '/success.html?session_id={CHECKOUT_SESSION_ID}',
+                    cancelUrl: window.location.href,
+                });
+
+                if (error) {
+                    console.error('Error:', error);
+                    alert('Error al procesar el pago: ' + error.message);
+                }
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Error al procesar el pago. Por favor intenta de nuevo.');
+            }
+        }
+    </script>
+</body>
+</html>
