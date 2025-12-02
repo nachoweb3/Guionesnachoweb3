@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: video-editor-backend-prod
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DEBUG=False
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - video_storage:/tmp/videos
+    depends_on:
+      - redis
+    restart: always
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: video-editor-frontend-prod
+    ports:
+      - "3000:80"
+    restart: always
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: video-editor-redis-prod
+    volumes:
+      - redis_data:/data
+    restart: always
+    networks:
+      - app-network
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+
+  celery:
+    build: ./backend
+    container_name: video-editor-celery-prod
+    command: celery -A app.celery_app worker --loglevel=info --concurrency=2
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+    volumes:
+      - video_storage:/tmp/videos
+    depends_on:
+      - redis
+    restart: always
+    networks:
+      - app-network
+
+volumes:
+  redis_data:
+  video_storage:
+
+networks:
+  app-network:
+    driver: bridge

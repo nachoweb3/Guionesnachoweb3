@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build: ./backend
+    container_name: video-editor-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DEBUG=True
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - ./backend:/app
+      - video_storage:/tmp/videos
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: video-editor-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Redis for Celery task queue
+  redis:
+    image: redis:7-alpine
+    container_name: video-editor-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  # Celery Worker for background tasks
+  celery:
+    build: ./backend
+    container_name: video-editor-celery
+    command: celery -A app.celery_app worker --loglevel=info
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+    volumes:
+      - ./backend:/app
+      - video_storage:/tmp/videos
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  video_storage:

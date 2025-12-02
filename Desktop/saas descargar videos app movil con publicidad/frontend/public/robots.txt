@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nachoweb3.github.io/saas-descargar-videos-app-movil-con-publicidad/sitemap.xml

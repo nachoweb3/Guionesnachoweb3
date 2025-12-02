@@ -1,0 +1,71 @@
+:root {
+  --primary-color: #ff0050;
+  --secondary-color: #00f2ea;
+  --background-dark: #000000;
+  --background-light: #121212;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Button styles */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Input styles */
+input, textarea {
+  font-family: inherit;
+  outline: none;
+}

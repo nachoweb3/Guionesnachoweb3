@@ -1,0 +1,13 @@
+.ad-banner-container {
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--background-light);
+  border-radius: 8px;
+  max-width: 728px;
+  text-align: center;
+}
+
+.adsbygoogle {
+  display: block;
+  min-height: 90px;
+}
