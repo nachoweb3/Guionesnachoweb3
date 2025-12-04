@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Nacho - Experto en edición de video, diseño de logos, tatuajes, programación, blockchain, NFTs, bots IA y automatización. Portfolio profesional + Tienda digital.">
+    <meta name="keywords" content="edición video, diseño logos, tatuajes, programación, blockchain, NFTs, bots IA, automatización">
+    <meta name="author" content="Nacho">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    <meta name="web3" content="enabled">
+    <meta name="crypto-payments" content="bitcoin, ethereum, usdt, bnb">
+
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="ca-pub-3096348441921012">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3096348441921012"
+            crossorigin="anonymous"></script>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nacho.web3/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nacho | Portfolio Digital Premium + Tienda">
+    <meta property="og:description" content="Experto en edición de video, diseño, programación, blockchain y automatización IA. Transforma tus ideas en realidad.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/6366f1/ffffff?text=Nacho+Portfolio">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nacho | Portfolio Digital Premium + Tienda">
+    <meta property="twitter:description" content="Experto en edición de video, diseño, programación, blockchain y automatización IA.">
+    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/6366f1/ffffff?text=Nacho+Portfolio">
+
+    <title>Nacho | Portfolio Digital Premium + Tienda</title>
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="cart-styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart-styles.css">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nacho Digital Services",
+      "description": "Servicios profesionales de edición de video, diseño, programación, blockchain, NFTs y automatización con IA",
+      "url": "https://nacho.web3",
+      "logo": "https://nacho.web3/logo.png",
+      "image": "https://via.placeholder.com/1200x630/6366f1/ffffff?text=Nacho+Portfolio",
+      "priceRange": "$$$",
+      "telephone": "+34640943669",
+      "email": "money4youbabe@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES"
+      },
+      "sameAs": [
+        "https://github.com/nachoweb3",
+        "https://twitter.com/nacho_web3",
+        "https://instagram.com/nacho",
+        "https://linkedin.com/in/nacho"
+      ],
+      "paymentAccepted": ["Bitcoin", "Ethereum", "USDT", "Credit Card", "PayPal"],
+      "currenciesAccepted": "BTC, ETH, USDT, USDC, BNB, USD, EUR",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios Digitales",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Edición de Video Profesional",
+              "description": "Edición cinematográfica con color grading y efectos visuales"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Diseño de Logos & Branding",
+              "description": "Identidad visual completa para tu marca"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Desarrollo Blockchain & NFTs",
+              "description": "Smart contracts, DApps y colecciones NFT"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#home" class="skip-to-main">Saltar al contenido principal</a>
+
+    <!-- ========== LOADER ========== -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">NACHO<span>.WEB3</span></div>
+        </div>
+    </div>
+
+    <!-- ========== THEME TOGGLE ========== -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <i class="fas fa-moon moon-icon"></i>
+        <i class="fas fa-sun sun-icon"></i>
+    </button>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">
+                    <span class="logo-text">NACHO</span>
+                    <span class="logo-dot">.WEB3</span>
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link">Inicio</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#tienda" class="nav-link">Tienda</a></li>
+                    <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="wallet-status-btn" id="walletStatusBtn" onclick="toggleWalletMenu()" style="display: none;">
+                        <i class="fas fa-wallet"></i>
+                        <span id="walletAddressShort">Conectar Wallet</span>
+                    </button>
+                    <a href="#contacto" class="btn-primary">Contratar Ahora</a>
+                    <button class="mobile-menu-toggle" id="mobileToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+
+            <!-- 3D Floating Elements -->
+            <div class="hero-3d-elements">
+                <div class="floating-element" style="top: 20%; left: 15%;">
+                    <div class="floating-cube">
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                        <div class="cube-face"></div>
+                    </div>
+                </div>
+                <div class="floating-element" style="top: 60%; left: 80%;">
+                    <div class="floating-sphere"></div>
+                </div>
+                <div class="floating-element" style="top: 30%; left: 70%;">
+                    <div class="floating-pyramid"></div>
+                </div>
+            </div>
+
+            <!-- Parallax Layers -->
+            <div class="parallax-layer parallax-bg-layer mouse-parallax"></div>
+            <div class="parallax-layer parallax-mid-layer mouse-parallax"></div>
+            <div class="parallax-layer parallax-foreground-layer mouse-parallax"></div>
+
+            <!-- Perspective Background -->
+            <div class="perspective-bg">
+                <div class="perspective-grid"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-bolt"></i>
+                    <span>Experto Digital Premium</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Transformo <span class="gradient-text">Ideas Digitales</span><br>
+                    en Realidades Épicas
+                </h1>
+
+                <p class="hero-subtitle">
+                    Soy <strong>Nacho</strong>, creador digital multidisciplinario. Desde edición de video cinematográfica
+                    hasta desarrollo blockchain, bots con IA y diseños únicos. Tu visión, mi ejecución.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="#servicios" class="btn-primary btn-large">
+                        Ver Servicios
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#portfolio" class="btn-secondary btn-large">
+                        Explorar Portfolio
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="#contacto" class="btn-warning btn-large q5554-btn">
+                        <i class="fas fa-rocket"></i>
+                        q5554
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Proyectos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Años Exp.</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Disponible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="about-image-wrapper">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="floating-badge badge-1">
+                            <i class="fas fa-video"></i>
+                            <span>Video Pro</span>
+                        </div>
+                        <div class="floating-badge badge-2">
+                            <i class="fas fa-code"></i>
+                            <span>Dev Expert</span>
+                        </div>
+                        <div class="floating-badge badge-3">
+                            <i class="fab fa-bitcoin"></i>
+                            <span>Crypto</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <div class="section-label">Sobre Mí</div>
+                    <h2 class="section-title">
+                        Creatividad + Tecnología =<br>
+                        <span class="gradient-text">Resultados Extraordinarios</span>
+                    </h2>
+                    <p class="section-description">
+                        No soy solo un freelancer, soy un <strong>arquitecto digital</strong> que convierte conceptos
+                        en experiencias memorables. Con más de una década dominando múltiples disciplinas,
+                        ofrezco soluciones que otros ni siquiera imaginan.
+                    </p>
+
+                    <div class="skills-showcase">
+                        <div class="skill-item">
+                            <i class="fas fa-film"></i>
+                            <span>Edición Video Pro</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-palette"></i>
+                            <span>Diseño Gráfico</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code-branch"></i>
+                            <span>Programación</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-ethereum"></i>
+                            <span>Blockchain</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-robot"></i>
+                            <span>Bots IA</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-pen-nib"></i>
+                            <span>Tatuajes</span>
+                        </div>
+                    </div>
+
+                    <a href="#contacto" class="btn-primary">
+                        Trabajemos Juntos
+                        <i class="fas fa-rocket"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES SECTION ========== -->
+    <section id="servicios" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Servicios</div>
+                <h2 class="section-title">
+                    ¿Qué Puedo Hacer <span class="gradient-text">Por Ti?</span>
+                </h2>
+                <p class="section-description">
+                    Soluciones digitales de nivel empresarial, personalizadas para tus necesidades
+                </p>
+            </div>
+
+            <!-- Google AdSense - Top Services -->
+            <div class="adsense-container" style="margin: 2rem 0;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3096348441921012"
+                     data-ad-slot="1234567890"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="services-grid">
+                <!-- Servicio 1: Video -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="service-title">Edición de Video Profesional</h3>
+                    <p class="service-description">
+                        Edición cinematográfica, color grading avanzado, motion graphics y efectos visuales.
+                        Desde vlogs hasta publicidad de alto impacto.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Adobe Premiere Pro / DaVinci Resolve</li>
+                        <li><i class="fas fa-check"></i> Color Grading Profesional</li>
+                        <li><i class="fas fa-check"></i> Motion Graphics & VFX</li>
+                        <li><i class="fas fa-check"></i> Edición Rápida 24-48h</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 2: Logos -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3 class="service-title">Diseño de Logos & Branding</h3>
+                    <p class="service-description">
+                        Identidades visuales únicas que cuentan historias. Desde startups hasta
+                        empresas consolidadas. Tu marca merece destacar.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Logo + Variaciones</li>
+                        <li><i class="fas fa-check"></i> Manual de Marca Completo</li>
+                        <li><i class="fas fa-check"></i> Vectores Editables (AI/EPS/SVG)</li>
+                        <li><i class="fas fa-check"></i> Revisiones Ilimitadas</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 3: Tatuajes -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="service-title">Diseño de Tatuajes Personalizados</h3>
+                    <p class="service-description">
+                        Arte corporal único y significativo. Diseños originales adaptados a tu estilo,
+                        desde minimalistas hasta realistas.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Diseño 100% Original</li>
+                        <li><i class="fas fa-check"></i> Bocetos Detallados</li>
+                        <li><i class="fas fa-check"></i> Adaptable a Cualquier Zona</li>
+                        <li><i class="fas fa-check"></i> Archivos Imprimibles HD</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 4: Programación -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Programación & Desarrollo</h3>
+                    <p class="service-description">
+                        Desarrollo full-stack, APIs, automatizaciones y soluciones a medida.
+                        JavaScript, Python, Node.js, React y más.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Aplicaciones Web/Móviles</li>
+                        <li><i class="fas fa-check"></i> APIs REST & GraphQL</li>
+                        <li><i class="fas fa-check"></i> Integraciones & Webhooks</li>
+                        <li><i class="fas fa-check"></i> Código Limpio & Documentado</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 5: Webs -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Creación de Webs Premium</h3>
+                    <p class="service-description">
+                        Sitios web modernos, rápidos y optimizados para conversión. Landing pages,
+                        portfolios, tiendas online y más.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Diseño Responsive</li>
+                        <li><i class="fas fa-check"></i> SEO Optimizado</li>
+                        <li><i class="fas fa-check"></i> Hosting & Dominio Gratis 1 año</li>
+                        <li><i class="fas fa-check"></i> Soporte Post-Lanzamiento</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 6: Cripto/Blockchain -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3 class="service-title">Cripto, NFTs & Blockchain</h3>
+                    <p class="service-description">
+                        Smart contracts, creación de NFTs, tokenización, DApps y consultoría blockchain.
+                        El futuro es descentralizado.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Smart Contracts (Solidity)</li>
+                        <li><i class="fas fa-check"></i> Creación/Mint de NFTs</li>
+                        <li><i class="fas fa-check"></i> DApps & Web3</li>
+                        <li><i class="fas fa-check"></i> Consultoría Crypto</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 7: Bots IA -->
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">Bots Automáticos con IA</h3>
+                    <p class="service-description">
+                        Automatización inteligente para redes sociales, atención al cliente, scraping,
+                        trading y más. Ahorra tiempo y escala tu negocio.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Chatbots IA (GPT/Claude)</li>
+                        <li><i class="fas fa-check"></i> Bots Redes Sociales</li>
+                        <li><i class="fas fa-check"></i> Automatización Workflows</li>
+                        <li><i class="fas fa-check"></i> Web Scraping & Data Mining</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 8: Videos Automáticos -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="service-title">Videos Automáticos con IA</h3>
+                    <p class="service-description">
+                        Generación automática de contenido para YouTube, TikTok, Instagram.
+                        Scripts IA + edición automatizada = contenido infinito.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Generación Scripts IA</li>
+                        <li><i class="fas fa-check"></i> Edición Automática</li>
+                        <li><i class="fas fa-check"></i> Voces IA Realistas</li>
+                        <li><i class="fas fa-check"></i> Publicación Programada</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 9: Manualidades -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-sparkles"></i>
+                    </div>
+                    <h3 class="service-title">Manualidades & Artesanía</h3>
+                    <p class="service-description">
+                        Creaciones artesanales únicas: cuadros personalizados, decoración, regalos especiales
+                        y productos hechos a mano con amor.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Cuadros Personalizados</li>
+                        <li><i class="fas fa-check"></i> Decoración Única</li>
+                        <li><i class="fas fa-check"></i> Regalos Especiales</li>
+                        <li><i class="fas fa-check"></i> Envío Nacional/Internacional</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 10: Marketing Digital -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="service-title">Marketing Digital & Social Media</h3>
+                    <p class="service-description">
+                        Estrategias de marketing completas, gestión de redes sociales, campañas publicitarias
+                        y SEO para hacer crecer tu negocio exponencialmente.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Gestión Redes Sociales</li>
+                        <li><i class="fas fa-check"></i> Campañas de Ads</li>
+                        <li><i class="fas fa-check"></i> SEO & SEM</li>
+                        <li><i class="fas fa-check"></i> Email Marketing</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 11: E-commerce -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-title">Tiendas Online & E-commerce</h3>
+                    <p class="service-description">
+                        Creación de tiendas online completas con Shopify, WooCommerce o plataformas personalizadas.
+                        Desde catálogo hasta pasarelas de pago integradas.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Shopify / WooCommerce</li>
+                        <li><i class="fas fa-check"></i> Pasarelas de Pago</li>
+                        <li><i class="fas fa-check"></i> Gestión de Inventario</li>
+                        <li><i class="fas fa-check"></i> Optimización para Ventas</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 12: Consultoría IA -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="service-title">Consultoría de Inteligencia Artificial</h3>
+                    <p class="service-description">
+                        Implementación de soluciones IA personalizadas, automatización de procesos,
+                        chatbots avanzados y análisis predictivo para tu negocio.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Chatbots Personalizados</li>
+                        <li><i class="fas fa-check"></i> Análisis Predictivo</li>
+                        <li><i class="fas fa-check"></i> Automatización Inteligente</li>
+                        <li><i class="fas fa-check"></i> Capacitación AI</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 13: Música & Audio -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="service-title">Producción Musical & Edición de Audio</h3>
+                    <p class="service-description">
+                        Producción musical completa, mezcla, masterización, diseño de sonido para videos,
+                        podcast y efectos de audio profesionales.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Producción Musical</li>
+                        <li><i class="fas fa-check"></i> Mezcla & Masterización</li>
+                        <li><i class="fas fa-check"></i> Podcast & Voiceover</li>
+                        <li><i class="fas fa-check"></i> Efectos de Sonido</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 14: Fotografía -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="service-title">Fotografía Profesional</h3>
+                    <p class="service-description">
+                        Sesiones fotográficas comerciales, retratos, productos, eventos y edición digital.
+                        Imágenes de alta calidad para destacar tu marca.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Fotografía de Producto</li>
+                        <li><i class="fas fa-check"></i> Retratos Profesionales</li>
+                        <li><i class="fas fa-check"></i> Edición Digital</li>
+                        <li><i class="fas fa-check"></i> Libro de Imágenes HD</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 15: Hosting & Mantenimiento -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="service-title">Hosting & Mantenimiento Web</h3>
+                    <p class="service-description">
+                        Alojamiento web de alto rendimiento, mantenimiento técnico, seguridad,
+                        backups automáticos y soporte 24/7 para tu sitio web.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Hosting Optimizado</li>
+                        <li><i class="fas fa-check"></i> SSL & Seguridad</li>
+                        <li><i class="fas fa-check"></i> Backups Automáticos</li>
+                        <li><i class="fas fa-check"></i> Soporte 24/7</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 16: Traducciones -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="900">
+                    <div class="service-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="service-title">Traducciones Profesionales</h3>
+                    <p class="service-description">
+                        Traducciones precisas y naturales entre español, inglés, portugués y más.
+                        Documentos, sitios web, contenido creativo y técnico.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Múltiples Idiomas</li>
+                        <li><i class="fas fa-check"></i> Traducciones Técnicas</li>
+                        <li><i class="fas fa-check"></i> Contenido Creativo</li>
+                        <li><i class="fas fa-check"></i> Entrega Rápida</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 17: Edición 3D -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="service-title">Modelado 3D & Animación</h3>
+                    <p class="service-description">
+                        Creación de modelos 3D, animaciones, renders arquitectónicos, productos
+                        virtuales y personajes para juegos y películas.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Modelado 3D Avanzado</li>
+                        <li><i class="fas fa-check"></i> Animación Realista</li>
+                        <li><i class="fas fa-check"></i> Renders de Arquitectura</li>
+                        <li><i class="fas fa-check"></i> Exportación Múltiple Formatos</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Servicio 18: Apps Móviles -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="1100">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Desarrollo de Apps Móviles</h3>
+                    <p class="service-description">
+                        Aplicaciones móviles nativas y multiplataforma para iOS y Android.
+                        UI/UX diseño, desarrollo completo y publicación en stores.
+                    </p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> React Native / Flutter</li>
+                        <li><i class="fas fa-check"></i> Apps iOS & Android</li>
+                        <li><i class="fas fa-check"></i> Diseño UI/UX</li>
+                        <li><i class="fas fa-check"></i> Publicación en Stores</li>
+                    </ul>
+                    <a href="#contacto" class="service-link">
+                        Solicitar Presupuesto <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PORTFOLIO SECTION ========== -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">
+                    Proyectos que <span class="gradient-text">Hablan por Sí Mismos</span>
+                </h2>
+                <p class="section-description">
+                    Una selección de mi trabajo más reciente y destacado
+                </p>
+            </div>
+
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="video">Video</button>
+                <button class="filter-btn" data-filter="design">Diseño</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="crypto">Crypto</button>
+                <button class="filter-btn" data-filter="bots">Bots IA</button>
+            </div>
+
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio items will be injected via JavaScript -->
+            </div>
+
+            <div class="portfolio-cta">
+                <p>¿Listo para crear algo increíble juntos?</p>
+                <a href="#contacto" class="btn-primary btn-large">
+                    Empecemos Tu Proyecto
+                    <i class="fas fa-rocket"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SHOP SECTION ========== -->
+    <section id="tienda" class="shop-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Tienda</div>
+                <h2 class="section-title">
+                    Paquetes & <span class="gradient-text">Productos Digitales</span>
+                </h2>
+                <p class="section-description">
+                    Servicios pre-diseñados listos para comprar. Calidad garantizada.
+                </p>
+            </div>
+
+            <!-- Google AdSense - Shop Section -->
+            <div class="adsense-container" style="margin: 2rem 0;">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3096348441921012"
+                     data-ad-slot="0987654321"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="shop-grid" id="shopGrid">
+                <!-- Crypto Payment Banner -->
+                <div class="crypto-payment-banner">
+                    <div class="crypto-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <div class="crypto-text">
+                        <h3>Pagamos con Cripto</h3>
+                        <p>Aceptamos Bitcoin, Ethereum, USDT, USDC y más</p>
+                    </div>
+                    <div class="crypto-accepted">
+                        <i class="fab fa-bitcoin"></i>
+                        <i class="fab fa-ethereum"></i>
+                        <i class="fas fa-coins"></i>
+                        <span>+10 redes</span>
+                    </div>
+                </div>
+
+                <!-- Crypto Wallet Integration -->
+                <div class="crypto-wallet-section">
+                    <h3 class="crypto-wallet-title">Conecta tu Wallet</h3>
+                    <div class="crypto-wallet-buttons">
+                        <button class="wallet-btn metamask" onclick="connectWallet('metamask')">
+                            <i class="fab fa-ethereum"></i>
+                            MetaMask
+                        </button>
+                        <button class="wallet-btn phantom" onclick="connectWallet('phantom')">
+                            <i class="fas fa-ghost"></i>
+                            Phantom
+                        </button>
+                        <button class="wallet-btn trust" onclick="connectWallet('trust')">
+                            <i class="fas fa-shield-alt"></i>
+                            Trust Wallet
+                        </button>
+                        <button class="wallet-btn walletconnect" onclick="connectWallet('walletconnect')">
+                            <i class="fas fa-link"></i>
+                            WalletConnect
+                        </button>
+                    </div>
+                    <div class="crypto-address-info">
+                        <div class="address-item">
+                            <strong>Bitcoin (BTC):</strong>
+                            <code>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code>
+                            <button class="copy-btn" onclick="copyAddress('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="address-item">
+                            <strong>Ethereum (ETH):</strong>
+                            <code>0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6</code>
+                            <button class="copy-btn" onclick="copyAddress('0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="address-item">
+                            <strong>USDT/USDC (TRC20):</strong>
+                            <code>TJ6BbsbfPkmFk2jGmKD9B3pFLWGVRehonk</code>
+                            <button class="copy-btn" onclick="copyAddress('TJ6BbsbfPkmFk2jGmKD9B3pFLWGVRehonk')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop items will be injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== REVIEWS SECTION ========== -->
+    <section id="reviews" class="reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Testimonios</div>
+                <h2 class="section-title">
+                    Lo Que Dicen <span class="gradient-text">Mis Clientes</span>
+                </h2>
+                <p class="section-description">
+                    +500 clientes satisfechos en todo el mundo
+                </p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">María González</h4>
+                            <p class="review-role">CEO, TechStartup</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "Nacho transformó completamente nuestra presencia digital. El video promocional
+                        que creó generó un aumento del 300% en conversiones. Profesional, rápido y creativo."
+                    </p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">Carlos Ruiz</h4>
+                            <p class="review-role">Fundador, CryptoVentures</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "Necesitábamos un smart contract para nuestro proyecto NFT. Nacho lo desarrolló
+                        en tiempo récord, seguro y optimizado. Su conocimiento en blockchain es impresionante."
+                    </p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">Laura Martínez</h4>
+                            <p class="review-role">Influencer, 500K seguidores</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "El bot de automatización para Instagram que creó Nacho me ahorra 10 horas semanales.
+                        Ahora puedo enfocarme en crear contenido mientras el bot gestiona mi comunidad."
+                    </p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">Javier López</h4>
+                            <p class="review-role">Dueño, Studio Tattoo</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "Sus diseños de tatuajes son increíbles. Cada pieza es única y perfectamente adaptada
+                        a lo que el cliente pide. Mis clientes siempre quedan fascinados con sus bocetos."
+                    </p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">Ana Torres</h4>
+                            <p class="review-role">Directora Marketing, FashionBrand</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "El logo y la identidad visual que Nacho diseñó para nuestra marca es simplemente
+                        perfecta. Capturó nuestra esencia a la primera. Un verdadero profesional."
+                    </p>
+                </div>
+
+                <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="review-info">
+                            <h4 class="review-name">Miguel Sánchez</h4>
+                            <p class="review-role">YouTuber, 2M suscriptores</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">
+                        "El sistema de generación automática de videos que desarrolló me permite subir
+                        contenido diario sin esfuerzo. Mis vistas se han triplicado. ¡Impresionante!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">
+                    Preguntas <span class="gradient-text">Frecuentes</span>
+                </h2>
+                <p class="section-description">
+                    Resuelve tus dudas antes de empezar
+                </p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cuánto tiempo tardas en completar un proyecto?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Depende del tipo de proyecto. Videos simples: 24-48h. Webs completas: 5-10 días.
+                            Proyectos blockchain: 2-4 semanas. Siempre cumplo plazos acordados.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Ofreces revisiones ilimitadas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Incluyo 3 rondas de revisiones en todos mis servicios. Para proyectos de diseño
+                            (logos, branding), las revisiones son ilimitadas hasta tu satisfacción total.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Trabajas con clientes internacionales?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            ¡Por supuesto! Trabajo con clientes de todo el mundo. Acepto pagos via PayPal,
+                            Stripe, criptomonedas y transferencias internacionales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué pasa si no estoy satisfecho con el resultado?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Tu satisfacción es mi prioridad. Si algo no cumple tus expectativas, trabajaré
+                            contigo hasta que estés 100% feliz. Garantía de calidad o devolución.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedes ayudarme si no sé exactamente qué necesito?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            ¡Absolutamente! Ofrezco sesiones de consultoría gratis donde analizamos tu proyecto
+                            y te recomiendo la mejor solución. No estás solo en esto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Ofreces soporte post-proyecto?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Sí. Todos mis proyectos incluyen 30 días de soporte gratis. Después, puedes contratar
+                            planes de mantenimiento mensuales si lo necesitas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item crypto-faq">
+                    <button class="faq-question">
+                        <span><i class="fab fa-bitcoin"></i> ¿Qué criptomonedas aceptas?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Acepto un amplio rango de criptomonedas: Bitcoin (BTC), Ethereum (ETH), USDT, USDC,
+                            BNB, SOL, ADA, DOT, y más de 15 redes diferentes incluyendo BSC, Polygon,
+                            Arbitrum, Optimism y Tron.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item crypto-faq">
+                    <button class="faq-question">
+                        <span><i class="fas fa-wallet"></i> ¿Cómo realizo el pago con cripto?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Es muy simple: 1) Elige el servicio que necesites, 2) Conecta tu wallet (MetaMask, Phantom,
+                            Trust Wallet) o copia la dirección, 3) Envía el pago correspondiente, 4) Recibirás
+                            confirmación y comenzaré tu proyecto inmediatamente.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item crypto-faq">
+                    <button class="faq-question">
+                        <span><i class="fas fa-shield-alt"></i> ¿Son seguros los pagos con cripto?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Totalmente seguros. Todas las transacciones se registran en blockchain y son
+                            irreversibles. Ofrezco garantía de servicio o devolución completa en caso de
+                            cualquier inconveniente. Plus de 500 clientes han pagado con crypto sin problemas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item crypto-faq">
+                    <button class="faq-question">
+                        <span><i class="fas fa-percentage"></i> ¿Hay descuentos por pagar con cripto?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            ¡Sí! Obtén un 10% de descuento adicional en todos los servicios cuando pagues con
+                            criptomonedas. También acepto pagos en stablecoins (USDT/USDC) para evitar
+                            la volatilidad del mercado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Planes</div>
+                <h2 class="section-title">
+                    Elige el Plan <span class="gradient-text">Perfecto para Ti</span>
+                </h2>
+                <p class="section-description">
+                    Precios transparentes y flexibles
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Plan Starter -->
+                <div class="pricing-card" data-aos="fade-up">
+                    <div class="pricing-badge">Freelancers</div>
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount">299</span>
+                        <span class="price-period">/proyecto</span>
+                    </div>
+                    <p class="pricing-description">
+                        Perfecto para proyectos pequeños y pruebas
+                    </p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1 Servicio a elección</li>
+                        <li><i class="fas fa-check"></i> 2 Revisiones</li>
+                        <li><i class="fas fa-check"></i> Entrega en 7 días</li>
+                        <li><i class="fas fa-check"></i> Soporte 15 días</li>
+                        <li><i class="fas fa-times"></i> Consultoría estratégica</li>
+                        <li><i class="fas fa-times"></i> Soporte prioritario</li>
+                    </ul>
+                    <a href="#contacto" class="btn-secondary btn-large">
+                        Contratar Ahora
+                    </a>
+                </div>
+
+                <!-- Plan Professional (Featured) -->
+                <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-badge">Más Popular</div>
+                    <h3 class="pricing-title">Professional</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount">799</span>
+                        <span class="price-period">/proyecto</span>
+                    </div>
+                    <p class="pricing-description">
+                        Ideal para negocios y emprendedores serios
+                    </p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 3 Servicios combinados</li>
+                        <li><i class="fas fa-check"></i> Revisiones ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Entrega en 5 días</li>
+                        <li><i class="fas fa-check"></i> Soporte 30 días</li>
+                        <li><i class="fas fa-check"></i> Consultoría estratégica</li>
+                        <li><i class="fas fa-times"></i> Soporte prioritario 24/7</li>
+                    </ul>
+                    <a href="#contacto" class="btn-primary btn-large">
+                        Contratar Ahora
+                    </a>
+                </div>
+
+                <!-- Plan Enterprise -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-badge">Empresas</div>
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">$</span>
+                        <span class="price-amount">1999</span>
+                        <span class="price-period">/mes</span>
+                    </div>
+                    <p class="pricing-description">
+                        Solución completa para empresas y marcas
+                    </p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Todos los servicios ilimitados</li>
+                        <li><i class="fas fa-check"></i> Revisiones ilimitadas</li>
+                        <li><i class="fas fa-check"></i> Entrega express 24-48h</li>
+                        <li><i class="fas fa-check"></i> Soporte ilimitado</li>
+                        <li><i class="fas fa-check"></i> Consultoría estratégica</li>
+                        <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
+                    </ul>
+                    <a href="#contacto" class="btn-secondary btn-large">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p><i class="fas fa-info-circle"></i> Todos los planes incluyen archivos fuente y derechos de uso comercial</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-label">Contacto</div>
+                    <h2 class="section-title">
+                        Hablemos de Tu <span class="gradient-text">Próximo Proyecto</span>
+                    </h2>
+                    <p class="section-description">
+                        Estoy disponible para proyectos freelance, colaboraciones y consultas.
+                        Respondo en menos de 24 horas.
+                    </p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>Email</h4>
+                                <p><a href="mailto:money4youbabe@gmail.com" style="color: var(--color-text-secondary); text-decoration: none;">money4youbabe@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>WhatsApp</h4>
+                                <p><a href="https://wa.me/34640943669" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">+34 640 943 669</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <div class="method-details">
+                                <h4>Telegram</h4>
+                                <p>@nacho_digital</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xkndezve" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Servicio Interesado</label>
+                            <select id="service" name="service" required>
+                                <option value="">Selecciona un servicio</option>
+                                <option value="video">Edición de Video Profesional</option>
+                                <option value="logo">Diseño de Logos & Branding</option>
+                                <option value="tattoo">Diseño de Tatuajes Personalizados</option>
+                                <option value="programming">Programación & Desarrollo</option>
+                                <option value="web">Creación de Webs Premium</option>
+                                <option value="crypto">Cripto/NFTs/Blockchain</option>
+                                <option value="bots">Bots Automáticos IA</option>
+                                <option value="autovideos">Videos Automáticos IA</option>
+                                <option value="crafts">Manualidades & Artesanía</option>
+                                <option value="marketing">Marketing Digital & Social Media</option>
+                                <option value="ecommerce">Tiendas Online & E-commerce</option>
+                                <option value="ai-consulting">Consultoría de Inteligencia Artificial</option>
+                                <option value="music">Producción Musical & Edición de Audio</option>
+                                <option value="photography">Fotografía Profesional</option>
+                                <option value="hosting">Hosting & Mantenimiento Web</option>
+                                <option value="translation">Traducciones Profesionales</option>
+                                <option value="3d">Modelado 3D & Animación</option>
+                                <option value="mobile">Desarrollo de Apps Móviles</option>
+                                <option value="other">Otro / Personalizado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Presupuesto Estimado</label>
+                            <select id="budget" name="budget" required>
+                                <option value="">Selecciona rango</option>
+                                <option value="<500">Menos de $500</option>
+                                <option value="500-1000">$500 - $1,000</option>
+                                <option value="1000-3000">$1,000 - $3,000</option>
+                                <option value="3000+">Más de $3,000</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">Cuéntame sobre tu proyecto</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-large">
+                            Enviar Mensaje
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PAYMENT INFO SECTION ========== -->
+    <section class="payment-info-section">
+        <div class="container">
+            <div class="payment-info-grid">
+                <div class="payment-info-card">
+                    <div class="payment-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3>💰 Métodos de Pago</h3>
+                    <p>Aceptamos múltiples formas de pago para tu comodidad:</p>
+                    <ul class="payment-list">
+                        <li><i class="fab fa-bitcoin"></i> Bitcoin (BTC)</li>
+                        <li><i class="fab fa-ethereum"></i> Ethereum (ETH)</li>
+                        <li><i class="fas fa-coins"></i> USDT/USDC (Stablecoins)</li>
+                        <li><i class="fas fa-university"></i> Transferencia Bancaria</li>
+                        <li><i class="fab fa-cc-paypal"></i> PayPal</li>
+                        <li><i class="fab fa-cc-stripe"></i> Tarjetas (Stripe)</li>
+                    </ul>
+                </div>
+
+                <div class="payment-info-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>📞 Contato Directo</h3>
+                    <p>Para consultas inmediatas o pago directo:</p>
+                    <div class="contact-quick">
+                        <p><strong>Email:</strong> <a href="mailto:money4youbabe@gmail.com">money4youbabe@gmail.com</a></p>
+                        <p><strong>WhatsApp:</strong> <a href="https://wa.me/34640943669" target="_blank">+34 640 943 669</a></p>
+                        <p><strong>Tiempo respuesta:</strong> Menos de 2 horas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-text">NACHO</span>
+                        <span class="logo-dot">.WEB3</span>
+                    </div>
+                    <p class="footer-description">
+                        Creador digital multidisciplinario. Transformando ideas en experiencias
+                        digitales excepcionales desde 2015.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Servicios</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicios">Edición de Video</a></li>
+                        <li><a href="#servicios">Diseño de Logos</a></li>
+                        <li><a href="#servicios">Diseño de Tatuajes</a></li>
+                        <li><a href="#servicios">Programación</a></li>
+                        <li><a href="#servicios">Creación de Webs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Explora</h4>
+                    <ul class="footer-links">
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#tienda">Tienda</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Recibe tips, recursos y ofertas exclusivas</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nacho Portfolio. Todos los derechos reservados.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacidad</a>
+                    <a href="#">Términos</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CART BUTTON (FLOATING) ========== -->
+    <button class="cart-button" id="cartButton" onclick="openCartModal()" aria-label="Shopping Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <!-- ========== CART MODAL ========== -->
+    <div class="modal cart-modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+                <button class="modal-close" onclick="closeCartModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems"></div>
+                <div id="cartTotal"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.8.0/dist/umd/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+    <!-- Advanced 3D & DeFi Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <!-- Main application scripts -->
+    <script src="analytics.js"></script>
+    <script src="web3-wallet.js"></script>
+    <script src="crypto-payment.js"></script>
+    <script src="shopping-cart.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Enhanced Professional Features -->
+    <script src="js/advanced-interactions.js"></script>
+    <script src="js/defi-features.js"></script>
+    <script src="js/portfolio-dynamic.js"></script>
+    <script src="js/performance-monitor.js"></script>
+    <script src="js/shop-renderer.js"></script>
+    <script src="js/notifications.js"></script>
+
+    <!-- Initialize Analytics -->
+    <script>
+        // Initialize analytics if IDs are available
+        const gaId = 'UA-XXXXXXXXX-X'; // Replace with your Google Analytics ID
+        const gtmId = 'GTM-XXXXXXX'; // Replace with your Google Tag Manager ID
+
+        if (typeof analytics !== 'undefined' && (gaId !== 'UA-XXXXXXXXX-X' || gtmId !== 'GTM-XXXXXXX')) {
+            analytics.initialize({
+                gaId: gaId !== 'UA-XXXXXXXXX-X' ? gaId : null,
+                gtmId: gtmId !== 'GTM-XXXXXXX' ? gtmId : null,
+                debug: window.location.hostname === 'localhost'
+            });
+        }
+
+        // Track page load time
+        window.addEventListener('load', function() {
+            if (typeof analytics !== 'undefined' && analytics.isEnabled) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                analytics.trackTiming('Page Load', 'load_time', loadTime);
+            }
+        });
+    </script>
+
+    <!-- Wallet Status Functions -->
+    <script>
+        function toggleWalletMenu() {
+            // Show wallet options or disconnect
+            if (walletManager && walletManager.connectedAddress) {
+                if (confirm('¿Desconectar wallet?')) {
+                    walletManager.disconnect().then(() => {
+                        updateWalletStatusButton(false);
+                        showNotification('Wallet desconectado', 'info');
+                    });
+                }
+            }
+        }
+
+        function updateWalletStatusButton(isConnected, address = '') {
+            const btn = document.getElementById('walletStatusBtn');
+            const addressSpan = document.getElementById('walletAddressShort');
+
+            if (btn && addressSpan) {
+                btn.style.display = 'flex';
+                if (isConnected && address) {
+                    addressSpan.textContent = address;
+                    btn.classList.add('connected');
+                } else {
+                    addressSpan.textContent = 'Conectar Wallet';
+                    btn.classList.remove('connected');
+                }
+            }
+        }
+
+        // Listen for wallet connection events
+        window.addEventListener('wallet:walletConnected', (e) => {
+            updateWalletStatusButton(true, e.detail.shortAddress || walletManager.shortenAddress(e.detail.address));
+        });
+
+        window.addEventListener('wallet:walletDisconnected', () => {
+            updateWalletStatusButton(false);
+        });
+
+        window.addEventListener('wallet:accountChanged', (e) => {
+            updateWalletStatusButton(true, walletManager.shortenAddress(e.detail.address));
+        });
+    </script>
+
+    <!-- Cart modal functions -->
+    <script>
+        function openCartModal() {
+            const modal = document.getElementById('cartModal');
+            if (modal) {
+                modal.classList.add('active');
+                cart.renderCartModal();
+            }
+        }
+
+        function closeCartModal() {
+            const modal = document.getElementById('cartModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+
+        // Escape key to close modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const activeModals = document.querySelectorAll('.modal.active');
+                activeModals.forEach(modal => modal.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        // Monitor Web Vitals
+        if ('PerformanceObserver' in window) {
+            // Largest Contentful Paint (LCP)
+            const lcpObserver = new PerformanceObserver((list) => {
+                const entries = list.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                if (typeof analytics !== 'undefined' && analytics.isEnabled) {
+                    analytics.trackTiming('Web Vitals', 'LCP', Math.round(lastEntry.renderTime || lastEntry.loadTime));
+                }
+            });
+            lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+
+            // First Input Delay (FID)
+            const fidObserver = new PerformanceObserver((list) => {
+                const entries = list.getEntries();
+                entries.forEach((entry) => {
+                    if (typeof analytics !== 'undefined' && analytics.isEnabled) {
+                        analytics.trackTiming('Web Vitals', 'FID', Math.round(entry.processingStart - entry.startTime));
+                    }
+                });
+            });
+            fidObserver.observe({ entryTypes: ['first-input'] });
+        }
+
+        // Error tracking
+        window.addEventListener('error', (e) => {
+            if (typeof analytics !== 'undefined' && analytics.isEnabled) {
+                analytics.trackException(`${e.message} at ${e.filename}:${e.lineno}`, false);
+            }
+        });
+
+        // Unhandled promise rejections
+        window.addEventListener('unhandledrejection', (e) => {
+            if (typeof analytics !== 'undefined' && analytics.isEnabled) {
+                analytics.trackException(`Unhandled Promise: ${e.reason}`, false);
+            }
+        });
+
+        // Service Worker Registration (for PWA - optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Uncomment to enable PWA
+                // navigator.serviceWorker.register('/sw.js').then(reg => {
+                //     console.log('Service Worker registered:', reg);
+                // }).catch(err => {
+                //     console.log('Service Worker registration failed:', err);
+                // });
+            });
+        }
+    </script>
+
+    <!-- Cookie Consent Banner (GDPR Compliance) -->
+    <div id="cookieConsent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <p>
+                <i class="fas fa-cookie-bite"></i>
+                Usamos cookies para mejorar tu experiencia y analizar el tráfico del sitio.
+                Al continuar, aceptas nuestra política de cookies.
+            </p>
+            <div class="cookie-actions">
+                <button onclick="acceptCookies()" class="btn-primary">Aceptar</button>
+                <button onclick="declineCookies()" class="btn-secondary">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie consent management
+        function showCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieConsent').style.display = 'block';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+
+            // Initialize analytics if accepted
+            if (typeof analytics !== 'undefined') {
+                analytics.setConsent(true);
+            }
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieConsent').style.display = 'none';
+
+            if (typeof analytics !== 'undefined') {
+                analytics.setConsent(false);
+            }
+        }
+
+        // Show cookie consent on page load
+        setTimeout(showCookieConsent, 2000);
+    </script>
+
+    <!-- NoScript Fallback -->
+    <noscript>
+        <div style="position: fixed; top: 0; left: 0; right: 0; background: #ef4444; color: white; padding: 1rem; text-align: center; z-index: 99999;">
+            <strong>JavaScript está deshabilitado.</strong>
+            Para una experiencia completa, por favor habilita JavaScript en tu navegador.
+            Las funcionalidades de Web3 y pagos con criptomonedas requieren JavaScript.
+        </div>
+    </noscript>
+
+</body>
+</html>
