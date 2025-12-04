@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npx netlify deploy:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

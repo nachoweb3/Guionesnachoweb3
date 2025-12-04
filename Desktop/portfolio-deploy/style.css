@@ -4132,3 +4132,53 @@ a:focus {
     color: var(--color-accent);
     text-decoration: underline;
 }
+
+/* ========================================
+   ADSENCE STYLES
+   ======================================== */
+
+.adsense-container {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 1px solid var(--color-border);
+    text-align: center;
+    overflow: hidden;
+}
+
+.adsense-container .adsbygoogle {
+    display: block !important;
+    margin: 0 auto;
+}
+
+.adsense-label {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Responsive AdSense */
+@media (max-width: 768px) {
+    .adsense-container {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+}
+
+/* Sticky AdSense - Sidebar */
+@media (min-width: 1200px) {
+    .adsense-sticky {
+        position: sticky;
+        top: 100px;
+    }
+}
+
+/* In-content AdSense */
+.adsense-in-content {
+    max-width: 728px;
+    margin: 2rem auto;
+}

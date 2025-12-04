@@ -1,0 +1,376 @@
+{
+  "digitalProducts": [
+    {
+      "id": "logo-design-basic",
+      "name": "Pack Logo Básico",
+      "description": "Diseño de logo profesional con 2 revisiones",
+      "price": 149,
+      "cryptoPrice": 0.0035,
+      "category": "design",
+      "type": "digital",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Ccircle cx='150' cy='80' r='40' fill='%236366f1'/%3E%3Ctext x='150' y='87' text-anchor='middle' fill='white' font-family='Arial Black' font-size='24' font-weight='bold'%3EL%3C/text%3E%3Ctext x='150' y='140' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ELogo Design Pack%3C/text%3E%3Ctext x='150' y='160' text-anchor='middle' fill='%236366f1' font-family='monospace' font-size='10'%3E2 Revisiones Incluidas%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Logo principal en formato vector",
+        "2 versiones de colores",
+        "Archivos: AI, EPS, SVG, PNG",
+        "2 rondas de revisiones",
+        "Entrega en 3-5 días"
+      ],
+      "deliveryTime": "3-5 días",
+      "revisions": 2,
+      "stock": -1,
+      "rating": 4.9,
+      "reviews": 47
+    },
+    {
+      "id": "logo-design-premium",
+      "name": "Pack Logo Premium",
+      "description": "Identidad visual completa con manual de marca",
+      "price": 349,
+      "cryptoPrice": 0.008,
+      "category": "design",
+      "type": "digital",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='75' y='50' width='150' height='100' rx='5' fill='%231f2937' stroke='%238b5cf6' stroke-width='2'/%3E%3Ctext x='150' y='75' text-anchor='middle' fill='%238b5cf6' font-family='sans-serif' font-size='14' font-weight='bold'%3EIDENTITY KIT%3C/text%3E%3Ccircle cx='150' cy='100' r='20' fill='%238b5cf6'/%3E%3Ctext x='150' y='107' text-anchor='middle' fill='white' font-family='Arial Black' font-size='16' font-weight='bold'%3EP%3C/text%3E%3Ctext x='150' y='130' text-anchor='middle' fill='white' font-family='sans-serif' font-size='8'%3EManual + Variations%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Logo completo con variaciones",
+        "Manual de marca completo (30 páginas)",
+        "Paleta de colores tipografías",
+        "Aplicaciones en mockups",
+        "Revisiones ilimitadas",
+        "Entrega en 7-10 días"
+      ],
+      "deliveryTime": "7-10 días",
+      "revisions": -1,
+      "stock": -1,
+      "rating": 5.0,
+      "reviews": 23
+    },
+    {
+      "id": "video-editing-basic",
+      "name": "Edición de Video Básica",
+      "description": "Edición profesional para videos de hasta 10 minutos",
+      "price": 199,
+      "cryptoPrice": 0.0045,
+      "category": "video",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='60' width='200' height='80' rx='5' fill='%231f2937' stroke='%23ef4444' stroke-width='2'/%3E%3Cpolygon points='140,100 140,120 180,110' fill='white'/%3E%3Ccircle cx='150' cy='110' r='25' fill='none' stroke='white' stroke-width='2'/%3E%3Ctext x='150' y='170' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3EVideo Editing Pro%3C/text%3E%3Ctext x='150' y='185' text-anchor='middle' fill='%23ef4444' font-family='monospace' font-size='10'%3EMax 10 min | 1080p%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Edición de hasta 10 minutos de video",
+        "Corrección de color profesional",
+        "Transiciones y efectos básicos",
+        "Subtítulos y texto personalizado",
+        "Audio mastering",
+        "Formato: 1080p MP4"
+      ],
+      "deliveryTime": "48-72 horas",
+      "revisions": 2,
+      "stock": -1,
+      "rating": 4.8,
+      "reviews": 56
+    },
+    {
+      "id": "video-editing-cinematic",
+      "name": "Edición Cinematográfica",
+      "description": "Edición de alto nivel con color grading profesional",
+      "price": 599,
+      "cryptoPrice": 0.014,
+      "category": "video",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Cdefs%3E%3ClinearGradient id='cinemaGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23f59e0b;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ef4444;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='60' width='200' height='80' rx='5' fill='%231f2937' stroke='url(%23cinemaGrad)' stroke-width='2'/%3E%3Crect x='70' y='80' width='30' height='40' fill='%23f59e0b'/%3E%3Crect x='110' y='80' width='30' height='40' fill='%23ef4444'/%3E%3Crect x='150' y='80' width='30' height='40' fill='%23dc2626'/%3E%3Ctext x='150' y='170' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ECinematic Grade%3C/text%3E%3Ctext x='150' y='185' text-anchor='middle' fill='%23f59e0b' font-family='monospace' font-size='10'%3E4K | Color Grading%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Edición de hasta 30 minutos",
+        "Color grading cinematográfico",
+        "Motion graphics avanzados",
+        "Efectos visuales profesionales",
+        "Mezcla de audio 5.1",
+        "Formatos: 4K, 1080p, vertical"
+      ],
+      "deliveryTime": "5-7 días",
+      "revisions": 3,
+      "stock": -1,
+      "rating": 5.0,
+      "reviews": 18
+    },
+    {
+      "id": "tattoo-design-basic",
+      "name": "Diseño de Tatuaje Personalizado",
+      "description": "Diseño único adaptado a tu estilo y cuerpo",
+      "price": 89,
+      "cryptoPrice": 0.002,
+      "category": "tattoo",
+      "type": "digital",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Cdefs%3E%3ClinearGradient id='tattooGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231f2937;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23374151;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='75' y='50' width='150' height='100' rx='75' fill='url(%23tattooGrad)' stroke='%236b7280' stroke-width='2'/%3E%3Cpath d='M130 100 Q150 80 170 100 Q190 120 170 140 Q150 160 130 140 Q110 120 130 100' fill='none' stroke='white' stroke-width='2'/%3E%3Ctext x='150' y='180' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ETattoo Design%3C/text%3E%3Ctext x='150' y='195' text-anchor='middle' fill='%236b7280' font-family='monospace' font-size='10'%3ECustom Art%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Diseño 100% original",
+        "Adaptado a la zona del cuerpo",
+        "Boceto detallado en alta resolución",
+        "Hasta 3 revisiones",
+        "Archivos: PNG, PDF imprimible",
+        "Consultoría de placement"
+      ],
+      "deliveryTime": "2-4 días",
+      "revisions": 3,
+      "stock": -1,
+      "rating": 4.9,
+      "reviews": 63
+    },
+    {
+      "id": "smart-contract-basic",
+      "name": "Smart Contract Básico",
+      "description": "Contrato inteligente seguro y auditado",
+      "price": 799,
+      "cryptoPrice": 0.018,
+      "category": "blockchain",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='50' width='200' height='100' rx='5' fill='%231f2937' stroke='%236366f1' stroke-width='2'/%3E%3Ctext x='60' y='70' fill='%236366f1' font-family='monospace' font-size='10'%3E// SPDX-License-Identifier: MIT%3C/text%3E%3Ctext x='60' y='85' fill='white' font-family='monospace' font-size='10'%3Epragma solidity ^0.8.0;%3C/text%3E%3Ctext x='60' y='105' fill='%23a78bfa' font-family='monospace' font-size='10'%3Econtract MyContract {%3C/text%3E%3Ctext x='60' y='120' fill='white' font-family='monospace' font-size='10'%3E// Secure audit code%3C/text%3E%3Ctext x='150' y='175' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ESmart Contract%3C/text%3E%3Ctext x='150' y='190' text-anchor='middle' fill='%236366f1' font-family='monospace' font-size='10'%3EAuditado | Seguro%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Smart contract en Solidity",
+        "Auditoría de seguridad básica",
+        "Documentación completa",
+        "Tests unitarios",
+        "Despliegue en testnet",
+        "Soporte técnico 15 días"
+      ],
+      "deliveryTime": "7-10 días",
+      "revisions": 2,
+      "stock": -1,
+      "rating": 5.0,
+      "reviews": 12
+    },
+    {
+      "id": "nft-collection",
+      "name": "Colección NFT Completa",
+      "description": "Generación y mint de colección NFT",
+      "price": 1499,
+      "cryptoPrice": 0.034,
+      "category": "blockchain",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='80' y='60' width='60' height='60' rx='5' fill='%236366f1'/%3E%3Crect x='150' y='60' width='60' height='60' rx='5' fill='%238b5cf6'/%3E%3Crect x='115' y='100' width='60' height='60' rx='5' fill='%23a78bfa'/%3E%3Ctext x='150' y='180' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ENFT Collection%3C/text%3E%3Ctext x='150' y='195' text-anchor='middle' fill='%23a78bfa' font-family='monospace' font-size='10'%3EGen + Mint + Market%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Generación de 100-10,000 NFTs",
+        "Smart contract ERC-721/1155",
+        "Arte generativo programado",
+        "Metadata IPFS",
+        "Despliegue en mainnet",
+        "Marketplace integration",
+        "Royalties automatizados"
+      ],
+      "deliveryTime": "14-21 días",
+      "revisions": 3,
+      "stock": -1,
+      "rating": 4.9,
+      "reviews": 8
+    },
+    {
+      "id": "bot-whatsapp-basic",
+      "name": "Bot WhatsApp Básico",
+      "description": "Chatbot para WhatsApp con respuestas IA",
+      "price": 399,
+      "cryptoPrice": 0.009,
+      "category": "bots",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Cdefs%3E%3ClinearGradient id='whatsappGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2325d366;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231ebea5;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Ccircle cx='150' cy='80' r='30' fill='url(%23whatsappGrad)'/%3E%3Cpath d='M135 75 Q150 65 165 75 Q150 85 135 75' fill='white'/%3E%3Ccircle cx='135' cy='75' r='2' fill='white'/%3E%3Ccircle cx='165' cy='75' r='2' fill='white'/%3E%3Crect x='75' y='130' width='150' height='40' rx='5' fill='%231f2937' stroke='%2325d366' stroke-width='1'/%3E%3Ctext x='150' y='155' text-anchor='middle' fill='%2325d366' font-family='monospace' font-size='10' font-weight='bold'%3EWHATSAPP BOT AI%3C/text%3E%3Ctext x='150' y='190' text-anchor='middle' fill='white' font-family='sans-serif' font-size='9'%3EChatbot Inteligente%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Bot con IA/GPT integration",
+        "Flujos de conversación personalizados",
+        "Respuestas automáticas 24/7",
+        "Panel de administración",
+        "Analytics de interacciones",
+        "Integración con sistemas existentes"
+      ],
+      "deliveryTime": "5-7 días",
+      "revisions": 2,
+      "stock": -1,
+      "rating": 4.7,
+      "reviews": 21
+    },
+    {
+      "id": "website-landing",
+      "name": "Landing Page Profesional",
+      "description": "Página de alto impacto y conversión",
+      "price": 449,
+      "cryptoPrice": 0.01,
+      "category": "web",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='40' width='200' height='120' rx='5' fill='%231f2937' stroke='%2310b981' stroke-width='2'/%3E%3Crect x='70' y='60' width='160' height='15' rx='3' fill='%2310b981'/%3E%3Crect x='70' y='85' width='120' height='8' rx='2' fill='%236b7280'/%3E%3Crect x='70' y='100' width='140' height='8' rx='2' fill='%236b7280'/%3E%3Crect x='70' y='115' width='100' height='8' rx='2' fill='%236b7280'/%3E%3Crect x='70' y='130' width='130' height='8' rx='2' fill='%236b7280'/%3E%3Ccircle cx='200' cy='125' r='15' fill='%2310b981'/%3E%3Ctext x='150' y='180' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3ELanding Page%3C/text%3E%3Ctext x='150' y='195' text-anchor='middle' fill='%2310b981' font-family='monospace' font-size='10'%3EResponsive | SEO%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Diseño responsive moderno",
+        "Optimización SEO completa",
+        "Formularios de contacto",
+        "Integración con analytics",
+        "Hosting + dominio 1 año",
+        "Entrega en 5-7 días",
+        "Soporte técnico 30 días"
+      ],
+      "deliveryTime": "5-7 días",
+      "revisions": 3,
+      "stock": -1,
+      "rating": 4.8,
+      "reviews": 34
+    },
+    {
+      "id": "website-ecommerce",
+      "name": "Tienda Online Completa",
+      "description": "E-commerce funcional con pagos integrados",
+      "price": 999,
+      "cryptoPrice": 0.022,
+      "category": "web",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='40' width='200' height='120' rx='5' fill='%231f2937' stroke='%23f59e0b' stroke-width='2'/%3E%3Crect x='70' y='60' width='40' height='40' fill='%23f59e0b'/%3E%3Crect x='120' y='60' width='40' height='40' fill='%23f59e0b'/%3E%3Crect x='170' y='60' width='40' height='40' fill='%23f59e0b'/%3E%3Crect x='70' y='110' width='160' height='8' rx='2' fill='%236b7280'/%3E%3Crect x='70' y='125' width='140' height='8' rx='2' fill='%236b7280'/%3E%3Ctext x='150' y='180' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12'%3EE-Commerce Store%3C/text%3E%3Ctext x='150' y='195' text-anchor='middle' fill='%23f59e0b' font-family='monospace' font-size='10'%3EShopify | WooCommerce%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Catálogo de productos ilimitado",
+        "Pasarelas de pago múltiple",
+        "Panel de administración",
+        "Gestión de inventario",
+        "Calculadora de envíos",
+        "Email marketing integration",
+        "Analytics y reportes"
+      ],
+      "deliveryTime": "10-14 días",
+      "revisions": 4,
+      "stock": -1,
+      "rating": 4.9,
+      "reviews": 19
+    },
+    {
+      "id": "crypto-consultation",
+      "name": "Consultoría Crypto 1h",
+      "description": "Sesión personalizada de criptomonedas",
+      "price": 199,
+      "cryptoPrice": 0.0045,
+      "category": "consulting",
+      "type": "service",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Ccircle cx='150' cy="80" r="35" fill='%23f59e0b'/%3E%3Ctext x='150' y='87' text-anchor='middle' fill='white' font-family='monospace' font-size='12' font-weight='bold'%3EBTC%3C/text%3E%3Crect x='75' y='130' width='150' height="35" rx='5' fill='%231f2937' stroke='%23f59e0b' stroke-width='1'/%3E%3Ctext x='150' y='150' text-anchor='middle' fill='%23f59e0b' font-family='monospace' font-size='10' font-weight='bold'%3ECRYPTO CONSULTING%3C/text%3E%3Ctext x='150' y='165' text-anchor='middle' fill='white' font-family='monospace' font-size='9'%3E1h Session + PDF Guide%3C/text%3E%3Ctext x='150' y='190' text-anchor='middle' fill='white' font-family='sans-serif' font-size='9'%3ETrading + DeFi + NFTs%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Llamada video 1-ono-1 de 1 hora",
+        "Análisis de portfolio personal",
+        "Estrategias DeFi y trading",
+        "Guía PDF personalizada",
+        "Acceso a grupo privado Discord",
+        "Soporte follow-up 7 días"
+      ],
+      "deliveryTime": "Agendar en 24-48h",
+      "revisions": 0,
+      "stock": 10,
+      "rating": 5.0,
+      "reviews": 8
+    }
+  ],
+  "packages": [
+    {
+      "id": "startup-pack",
+      "name": "Pack Startup Digital",
+      "description": "Todo lo que necesitas para lanzar tu marca digital",
+      "price": 1499,
+      "cryptoPrice": 0.034,
+      "originalPrice": 2396,
+      "category": "packages",
+      "type": "bundle",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Cdefs%3E%3ClinearGradient id='packGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236366f1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23a78bfa;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Crect x='50' y='40' width='200' height='120' rx='8' fill='%231f2937' stroke='url(%23packGrad)' stroke-width='3'/%3E%3Ctext x='150' y='65' text-anchor='middle' fill='%23a78bfa' font-family='sans-serif' font-size='14' font-weight='bold'%3ESTARTUP PACK%3C/text%3E%3Ctext x='80' y='90' fill='white' font-family='monospace' font-size='9'%3E✓ Logo Premium%3C/text%3E%3Ctext x='80' y='105' fill='white' font-family='monospace' font-size='9'%3E✓ Website Complete%3C/text%3E%3Ctext x='80' y='120' fill='white' font-family='monospace' font-size='9'%3E✓ Social Media Kit%3C/text%3E%3Ctext x='80' y='135' fill='white' font-family='monospace' font-size='9'%3E✓ Video Promo%3C/text%3E%3Ctext x='80' y='150' fill='white' font-family='monospace' font-size='9'%3E✓ WhatsApp Bot%3C/text%3E%3Ctext x='150' y='180' text-anchor='middle' fill='%23a78bfa' font-family='monospace' font-size='10' font-weight='bold'%3ESAVE 38% OFF%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Logo Premium + Manual de marca",
+        "Website completo (5 secciones)",
+        "Kit redes sociales (50 diseños)",
+        "Video promocional 1 minuto",
+        "Bot WhatsApp básico",
+        "Consultoría marketing 1h",
+        "Hosting gratis 1 año",
+        "Soporte prioritario 90 días"
+      ],
+      "deliveryTime": "21-28 días",
+      "revisions": -1,
+      "stock": 5,
+      "rating": 5.0,
+      "reviews": 3,
+      "badge": "MEJOR VALOR",
+      "discount": 38
+    },
+    {
+      "id": "web3-creator-pack",
+      "name": "Pack Web3 Creator",
+      "description": "Suite completa para creadores en el espacio Web3",
+      "price": 2499,
+      "cryptoPrice": 0.056,
+      "originalPrice": 3794,
+      "category": "packages",
+      "type": "bundle",
+      "image": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 200'%3E%3Cdefs%3E%3CradialGradient id='web3Grad'%3E%3Cstop offset='0%25' style='stop-color:%238b5cf6;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%236366f1;stop-opacity:0.3' /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='300' height='200' fill='%23111827'/%3E%3Ccircle cx='150' cy='100' r='60' fill='url(%23web3Grad)'/%3E%3Ccircle cx='150' cy='100' r='40' fill='none' stroke='%238b5cf6' stroke-width='2' opacity='0.5'/%3E%3Ccircle cx='150' cy='100' r='25' fill='none' stroke='%238b5cf6' stroke-width='2' opacity='0.3'/%3E%3Ctext x='150' y='175' text-anchor='middle' fill='white' font-family='sans-serif' font-size='12' font-weight='bold'%3EWEB3 CREATOR%3C/text%3E%3Ctext x='150' y='190' text-anchor='middle' fill='%238b5cf6' font-family='monospace' font-size='10'%3ENFT + DeFi + DApps%3C/text%3E%3C/svg%3E",
+      "features": [
+        "Colección NFT (hasta 500)",
+        "Smart contract personalizado",
+        "Landing page Web3",
+        "DApp básica integrada",
+        "Bot trading personalizado",
+        "Consultoría DeFi avanzada",
+        "Marketing para proyecto crypto",
+        "Audit smart contract básico"
+      ],
+      "deliveryTime": "30-45 días",
+      "revisions": -1,
+      "stock": 3,
+      "rating": 5.0,
+      "reviews": 1,
+      "badge": "EXCLUSIVO",
+      "discount": 34
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "name": "Todos",
+      "icon": "fas fa-th"
+    },
+    {
+      "id": "design",
+      "name": "Diseño",
+      "icon": "fas fa-palette"
+    },
+    {
+      "id": "video",
+      "name": "Video",
+      "icon": "fas fa-video"
+    },
+    {
+      "id": "web",
+      "name": "Web",
+      "icon": "fas fa-laptop-code"
+    },
+    {
+      "id": "blockchain",
+      "name": "Blockchain",
+      "icon": "fab fa-ethereum"
+    },
+    {
+      "id": "bots",
+      "name": "Bots IA",
+      "icon": "fas fa-robot"
+    },
+    {
+      "id": "tattoo",
+      "name": "Tatuajes",
+      "icon": "fas fa-pen-nib"
+    },
+    {
+      "id": "packages",
+      "name": "Paquetes",
+      "icon": "fas fa-box"
+    }
+  ],
+  "cryptoAccepted": {
+    "BTC": {
+      "name": "Bitcoin",
+      "icon": "fab fa-bitcoin",
+      "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+    },
+    "ETH": {
+      "name": "Ethereum",
+      "icon": "fab fa-ethereum",
+      "address": "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6"
+    },
+    "USDT": {
+      "name": "Tether USDT",
+      "icon": "fas fa-coins",
+      "address": "TJ6BbsbfPkmFk2jGmKD9B3pFLWGVRehonk"
+    }
+  }
+}
