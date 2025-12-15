@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run premium-vendedor:*)",
+      "Bash(pm2 start:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "apps": [
+    {
+      "name": "jesus-premium-bot",
+      "script": "bot-final-con-canales.js",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "1G",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "error_file": "./logs/premium-err.log",
+      "out_file": "./logs/premium-out.log",
+      "log_file": "./logs/premium-combined.log",
+      "time": true
+    },
+    {
+      "name": "payment-server",
+      "script": "server-pagos.js",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "512M",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 3000
+      },
+      "error_file": "./logs/server-err.log",
+      "out_file": "./logs/server-out.log",
+      "log_file": "./logs/server-combined.log",
+      "time": true
+    }
+  ]
+}

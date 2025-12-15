@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bot Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+            text-align: center;
+        }
+        .status {
+            font-size: 3em;
+            margin: 20px;
+        }
+        .online { color: #00ff88; }
+        .url {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            word-break: break-all;
+        }
+        .info {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #16213e;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #00ff88; }
+        .check { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="status online check">✅ BOT ACTIVO</div>
+
+    <h1>🤖 Solana Trading Bot</h1>
+
+    <div class="url">
+        <strong>Webhook URL:</strong><br>
+        https://dbad75b47cba.ngrok-free.app/webhook/8225421319:AAEaOuOZcm3Qw1CtwcxWaq-aFaboHAkCd8U
+    </div>
+
+    <div class="info">
+        <h2>📊 Estado Actual</h2>
+        <p>✅ Servidor: Corriendo en puerto 8080</p>
+        <p>✅ Ngrok: Conectado</p>
+        <p>✅ Webhook: Configurado</p>
+        <p>✅ Wallet: 0.11 SOL disponibles</p>
+        <p>🎯 Canal Monitoreado: @cryptoyeezuscalls</p>
+    </div>
+
+    <div class="info">
+        <h2>⚡ Estrategia Activa</h2>
+        <p>💰 Compra inicial: 0.01 SOL</p>
+        <p>📈 Vende 60% al duplicar (2x)</p>
+        <p>📊 Ventas progresivas en 3x y 5x</p>
+        <p>🛡️ Stop loss: -30%</p>
+    </div>
+
+    <div class="info">
+        <h2>📱 Comandos del Bot</h2>
+        <p><code>/start</code> - Iniciar bot</p>
+        <p><code>/status</code> - Ver posiciones</p>
+        <p><code>/manual &lt;dirección&gt;</code> - Compra manual</p>
+    </div>
+
+    <p style="margin-top: 30px;">
+        <strong>El bot está operando 24/7 automáticamente!</strong>
+    </p>
+</body>
+</html>

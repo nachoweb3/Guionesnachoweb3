@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Trading Bot - Auto-detect language</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-glow: #00ffff;
+            --secondary-glow: #ff00ff;
+            --tertiary-glow: #ffff00;
+            --dark-bg: #0a0a0f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Payment Methods Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .payment-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .crypto-address {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #00ffff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Special Features */
+        .feature-highlight {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .glitch-text {
+            position: relative;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            animation: glitch 725ms infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: 0.05em 0 0 #00ffff,
+                            -0.03em -0.04em 0 #ff00ff,
+                            0.025em 0.04em 0 #ffff00;
+            }
+            15% {
+                text-shadow: 0.05em 0 0 #00ffff,
+                            -0.03em -0.04em 0 #ff00ff,
+                            0.025em 0.04em 0 #ffff00;
+            }
+            16% {
+                text-shadow: -0.05em -0.025em 0 #00ffff,
+                            0.025em 0.035em 0 #ff00ff,
+                            -0.05em -0.05em 0 #ffff00;
+            }
+            49% {
+                text-shadow: -0.05em -0.025em 0 #00ffff,
+                            0.025em 0.035em 0 #ff00ff,
+                            -0.05em -0.05em 0 #ffff00;
+            }
+            50% {
+                text-shadow: 0.05em 0.035em 0 #00ffff,
+                            0.03em 0 0 #ff00ff,
+                            0 -0.04em 0 #ffff00;
+            }
+            99% {
+                text-shadow: 0.05em 0.035em 0 #00ffff,
+                            0.03em 0 0 #ff00ff,
+                            0 -0.04em 0 #ffff00;
+            }
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="es">🇪🇸 ESP</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 ENG</button>
+        <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="it">🇮🇹 IT</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="ja">🇯🇵 JP</button>
+        <button class="lang-btn" data-lang="ko">🇰🇷 KR</button>
+        <button class="lang-btn" data-lang="zh">🇨🇳 CN</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-lg z-50 px-6 py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-magenta-500 rounded-full flex items-center justify-center">
+                    <i class="fab fa-telegram text-white"></i>
+                </div>
+                <span class="text-xl font-bold gradient-text">QuantumBot</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#features" data-translate="nav_features">Features</a>
+                <a href="#pricing" data-translate="nav_pricing">Pricing</a>
+                <a href="#payment" data-translate="nav_payment">Payment</a>
+                <a href="#faq" data-translate="nav_faq">FAQ</a>
+            </div>
+            <a href="https://t.me/copyjesus_bot" target="_blank" class="bg-blue-500 px-6 py-2 rounded-full">
+                <span class="relative z-10 flex items-center">
+                    <i class="fab fa-telegram mr-2"></i>
+                    <span data-translate="launch_bot">Launch Bot</span>
+                </span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="glitch-text mb-4" data-translate="hero_title">COPY TRADING</h1>
+            <p class="text-4xl mb-8 text-gray-300" data-translate="hero_subtitle">
+                Copy pro traders automatically on Solana
+            </p>
+            <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto" data-translate="hero_description">
+                🤖 <strong>Bot on Telegram</strong> that automatically copies trades from your favorite influencers.
+                Specialized in <strong>Solana</strong> and <strong>Pump.fun</strong>.
+                Get the <strong>profits</strong> of professionals!
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="https://t.me/copyjesus_bot" target="_blank" class="bg-gradient-to-r from-cyan-500 to-magenta-500 px-8 py-4 rounded-full text-lg font-bold">
+                    <i class="fab fa-telegram mr-2"></i>
+                    <span data-translate="cta_primary">Copy KOLs Now</span>
+                </a>
+                <button onclick="document.getElementById('payment').scrollIntoView({behavior: 'smooth'})" class="border-2 border-cyan-500 px-8 py-4 rounded-full text-lg font-bold hover:bg-cyan-500/20 transition">
+                    <span data-translate="cta_secondary">View Plans</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt text-green-400"></i>
+                    <span data-translate="trust_secure">100% Secure</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-users text-blue-400"></i>
+                    <span data-translate="trust_users">1,500+ Users</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-star text-yellow-400"></i>
+                    <span data-translate="trust_rating">4.9 Rating</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-bolt text-orange-400"></i>
+                    <span data-translate="trust_fast">Instant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Feature -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="feature-highlight">
+                <h2 class="text-3xl font-bold mb-6 text-center" data-translate="main_feature_title">
+                    🎯 MAIN FEATURE: COPY TRADING 🎯
+                </h2>
+                <p class="text-xl text-center mb-8" data-translate="main_feature_description">
+                    Connect the <strong>channels of your favorite KOLs</strong> and the bot will <strong>copy every trade</strong> they make
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <div class="text-center">
+                        <i class="fab fa-telegram text-5xl text-blue-400 mb-2"></i>
+                        <p data-translate="step1">Add Channels</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-3xl text-cyan-400"></i>
+                    <div class="text-center">
+                        <i class="fas fa-robot text-5xl text-magenta-400 mb-2"></i>
+                        <p data-translate="step2">Bot Detects</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-3xl text-cyan-400"></i>
+                    <div class="text-center">
+                        <i class="fas fa-chart-line text-5xl text-green-400 mb-2"></i>
+                        <p data-translate="step3">You Profit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-translate="payment_title">
+                💰 PAYMENT METHODS
+            </h2>
+
+            <!-- Crypto Payments -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 text-center" data-translate="crypto_payments">Crypto Payments</h3>
+                <div class="payment-grid">
+                    <!-- SOL -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-coins text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Solana (SOL)</h4>
+                                <p class="text-sm text-gray-400">Fast & Low Fees</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="sol-address">Dode6Ht9U2kR1oJz53jFLucW31vqYSLj8U9s5DQyLmz1</span>
+                            <button class="copy-btn" onclick="copyAddress('sol-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+
+                    <!-- USDT -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-dollar-sign text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">USDT (TRC20)</h4>
+                                <p class="text-sm text-gray-400">Stable Value</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="usdt-address">TRXNHQJXm1fu9W3nR7rJ2oG2gRGxXG8dKdL9sQ4tMhT</span>
+                            <button class="copy-btn" onclick="copyAddress('usdt-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+
+                    <!-- USDC -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-dollar-sign text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">USDC (Solana)</h4>
+                                <p class="text-sm text-gray-400">Stable & Fast</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="usdc-address">EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v</span>
+                            <button class="copy-btn" onclick="copyAddress('usdc-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+
+                    <!-- Bitcoin -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fab fa-bitcoin text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Bitcoin (BTC)</h4>
+                                <p class="text-sm text-gray-400">Most Popular</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="btc-address">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</span>
+                            <button class="copy-btn" onclick="copyAddress('btc-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+
+                    <!-- Ethereum -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fab fa-ethereum text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Ethereum (ETH)</h4>
+                                <p class="text-sm text-gray-400">Smart Contracts</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="eth-address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</span>
+                            <button class="copy-btn" onclick="copyAddress('eth-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+
+                    <!-- BNB -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-coins text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">BNB (BSC)</h4>
+                                <p class="text-sm text-gray-400">Binance Smart Chain</p>
+                            </div>
+                        </div>
+                        <div class="crypto-address">
+                            <span id="bnb-address">bnb1grpf0955h0ykzq3ar5nmum7y6gdfl6lxfn46h2</span>
+                            <button class="copy-btn" onclick="copyAddress('bnb-address')">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <p class="text-sm text-gray-400" data-translate="send_to">Send to:</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Payments -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-center" data-translate="alt_payments">Alternative Payments</h3>
+                <div class="payment-grid">
+                    <!-- PayPal -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fab fa-paypal text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">PayPal</h4>
+                                <p class="text-sm text-gray-400">Credit/Debit Card</p>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://paypal.me/quantumbot', '_blank')" class="w-full bg-blue-500 py-3 rounded-lg font-bold">
+                            <span data-translate="pay_now">Pay Now</span>
+                        </button>
+                    </div>
+
+                    <!-- Stripe -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-credit-card text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Stripe</h4>
+                                <p class="text-sm text-gray-400">Global Payments</p>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://buy.stripe.com/quantumbot', '_blank')" class="w-full bg-purple-600 py-3 rounded-lg font-bold">
+                            <span data-translate="pay_now">Pay Now</span>
+                        </button>
+                    </div>
+
+                    <!-- CoinBase -->
+                    <div class="payment-card">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center mr-3">
+                                <i class="fab fa-bitcoin text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Coinbase</h4>
+                                <p class="text-sm text-gray-400">Easy Crypto</p>
+                            </div>
+                        </div>
+                        <button onclick="window.open('https://commerce.coinbase.com/checkout/quantumbot', '_blank')" class="w-full bg-blue-700 py-3 rounded-lg font-bold">
+                            <span data-translate="pay_now">Pay Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Improvements Section -->
+    <section class="py-20 bg-gradient-to-b from-transparent to-purple-900/20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-translate="improvements_title">
+                🚀 MORE IMPROVEMENTS IDEAS
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">🎯 Smart Alerts</h3>
+                    <p class="text-gray-400" data-translate="feature_1">AI-powered notifications before big pumps. Get alerts 5 minutes before KOLs post.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">📊 Analytics Dashboard</h3>
+                    <p class="text-gray-400" data-translate="feature_2">Web dashboard to track profits, ROI, and win rate in real-time.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">🔐 Multi-Wallet</h3>
+                    <p class="text-gray-400" data-translate="feature_3">Connect multiple wallets for diversification and risk management.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">⚡ Gas Optimization</h3>
+                    <p class="text-gray-400" data-translate="feature_4">Auto-select best gas prices and routes to maximize profits.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">🎮 Gamification</h3>
+                    <p class="text-gray-400" data-translate="feature_5">Earn rewards, badges, and compete on leaderboards with other traders.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">📱 Mobile App</h3>
+                    <p class="text-gray-400" data-translate="feature_6">Native iOS/Android app with push notifications and biometric security.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">🤖 AI Assistant</h3>
+                    <p class="text-gray-400" data-translate="feature_7">ChatGPT-like assistant to analyze market trends and suggest strategies.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">🔄 Copy Copy</h3>
+                    <p class="text-gray-400" data-translate="feature_8">Copy other QuantumBot users who are performing well.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-lg p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4">📈 Auto-Compound</h3>
+                    <p class="text-gray-400" data-translate="feature_9">Automatically reinvest profits to compound gains.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12" data-translate="faq_title">
+                ❓ FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq1_q">How does copy trading work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq1_a">The bot monitors Telegram channels of professional traders. When they post a trade, the bot automatically executes the same trade in your wallet.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq2_q">Is my money safe?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq2_a">Yes! Your funds always stay in your wallet. The bot only has trading permissions. You can revoke access anytime.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq3_q">What profits can I expect?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq3_a">Results vary. Users report 50-500% monthly returns depending on market conditions and followed KOLs.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-translate="faq4_q">How do I get started?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq4_a">1. Click "Launch Bot" to open @copyjesus_bot in Telegram<br>
+                        2. Choose your plan<br>
+                        3. Connect your wallet<br>
+                        4. Add KOL channels<br>
+                        5. Start copying!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-500" data-translate="footer">© 2024 QuantumBot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Translation data
+        const translations = {
+            es: {
+                nav_features: "Características",
+                nav_pricing: "Precios",
+                nav_payment: "Pagos",
+                nav_faq: "FAQ",
+                launch_bot: "Iniciar Bot",
+                hero_title: "COPY TRADING",
+                hero_subtitle: "Copia traders profesionales automáticamente en Solana",
+                hero_description: "🤖 <strong>Bot en Telegram</strong> que <strong>copia automáticamente</strong> las operaciones de tus influencers favoritos. Especializado en <strong>Solana</strong> y <strong>Pump.fun</strong>. ¡Consigue las <strong>ganancias</strong> de los profesionales!",
+                cta_primary: "Copiar KOLs Ahora",
+                cta_secondary: "Ver Planes",
+                trust_secure: "100% Seguro",
+                trust_users: "1,500+ Usuarios",
+                trust_rating: "4.9 Calificación",
+                trust_fast: "Instantáneo",
+                main_feature_title: "🎯 CARACTERÍSTICA PRINCIPAL: COPY TRADING 🎯",
+                main_feature_description: "Conecta los <strong>canales de tus KOLs favoritos</strong> y el bot <strong>copiará cada operación</strong> que hagan",
+                step1: "Añadir Canales",
+                step2: "Bot Detecta",
+                step3: "Tú Ganas",
+                payment_title: "💰 MÉTODOS DE PAGO",
+                crypto_payments: "Pagos con Crypto",
+                alt_payments: "Pagos Alternativos",
+                send_to: "Enviar a:",
+                pay_now: "Pagar Ahora",
+                improvements_title: "🚀 MÁS IDEAS DE MEJORAS",
+                feature_1: "Alertas inteligentes con IA. Recibe notificaciones 5 minutos antes de que publiquen los KOLs.",
+                feature_2: "Dashboard web para tracking de profits, ROI y win rate en tiempo real.",
+                feature_3: "Conecta múltiples wallets para diversificación y gestión de riesgo.",
+                feature_4: "Auto-selección de mejores precios de gas y rutas para maximizar ganancias.",
+                feature_5: "Gamificación con recompensas, insignias y competencias en leaderboards.",
+                feature_6: "App nativa para iOS/Android con notificaciones push y seguridad biométrica.",
+                feature_7: "Asistente de IA estilo ChatGPT para analizar tendencias y sugerir estrategias.",
+                feature_8: "Copia a otros usuarios de QuantumBot que estén rindiendo bien.",
+                feature_9: "Reinvierte automáticamente las ganancias para compound los rendimientos.",
+                faq_title: "❓ PREGUNTAS FRECUENTES",
+                faq1_q: "¿Cómo funciona el copy trading?",
+                faq1_a: "El bot monitorea canales de Telegram de traders profesionales. Cuando ellos publican un trade, el bot ejecuta automáticamente la misma operación en tu wallet.",
+                faq2_q: "¿Está seguro mi dinero?",
+                faq2_a: "¡Sí! Tus fondos siempre permanecen en tu wallet. El bot solo tiene permisos de trading. Puedes revocar el acceso cuando quieras.",
+                faq3_q: "¿Qué ganancias puedo esperar?",
+                faq3_a: "Los resultados varían. Usuarios reportan retornos de 50-500% mensual dependiendo de las condiciones del mercado y los KOLs seguidos.",
+                faq4_q: "¿Cómo empiezo?",
+                faq4_a: "1. Click en 'Iniciar Bot' para abrir @copyjesus_bot en Telegram<br>2. Elige tu plan<br>3. Conecta tu wallet<br>4. Añade canales de KOLs<br>5. ¡Empieza a copiar!",
+                footer: "© 2024 QuantumBot. Todos los derechos reservados."
+            },
+            en: {
+                nav_features: "Features",
+                nav_pricing: "Pricing",
+                nav_payment: "Payment",
+                nav_faq: "FAQ",
+                launch_bot: "Launch Bot",
+                hero_title: "COPY TRADING",
+                hero_subtitle: "Copy pro traders automatically on Solana",
+                hero_description: "🤖 <strong>Bot on Telegram</strong> that automatically copies trades from your favorite influencers. Specialized in <strong>Solana</strong> and <strong>Pump.fun</strong>. Get the <strong>profits</strong> of professionals!",
+                cta_primary: "Copy KOLs Now",
+                cta_secondary: "View Plans",
+                trust_secure: "100% Secure",
+                trust_users: "1,500+ Users",
+                trust_rating: "4.9 Rating",
+                trust_fast: "Instant",
+                main_feature_title: "🎯 MAIN FEATURE: COPY TRADING 🎯",
+                main_feature_description: "Connect the <strong>channels of your favorite KOLs</strong> and the bot will <strong>copy every trade</strong> they make",
+                step1: "Add Channels",
+                step2: "Bot Detects",
+                step3: "You Profit",
+                payment_title: "💰 PAYMENT METHODS",
+                crypto_payments: "Crypto Payments",
+                alt_payments: "Alternative Payments",
+                send_to: "Send to:",
+                pay_now: "Pay Now",
+                improvements_title: "🚀 MORE IMPROVEMENTS IDEAS",
+                feature_1: "AI-powered smart alerts. Get notifications 5 minutes before KOLs post.",
+                feature_2: "Web dashboard to track profits, ROI, and win rate in real-time.",
+                feature_3: "Connect multiple wallets for diversification and risk management.",
+                feature_4: "Auto-select best gas prices and routes to maximize profits.",
+                feature_5: "Gamification with rewards, badges, and leaderboards.",
+                feature_6: "Native iOS/Android app with push notifications and biometric security.",
+                feature_7: "ChatGPT-like AI assistant to analyze trends and suggest strategies.",
+                feature_8: "Copy other QuantumBot users who are performing well.",
+                feature_9: "Automatically reinvest profits to compound gains.",
+                faq_title: "❓ FREQUENTLY ASKED QUESTIONS",
+                faq1_q: "How does copy trading work?",
+                faq1_a: "The bot monitors Telegram channels of professional traders. When they post a trade, the bot automatically executes the same trade in your wallet.",
+                faq2_q: "Is my money safe?",
+                faq2_a: "Yes! Your funds always stay in your wallet. The bot only has trading permissions. You can revoke access anytime.",
+                faq3_q: "What profits can I expect?",
+                faq3_a: "Results vary. Users report 50-500% monthly returns depending on market conditions and followed KOLs.",
+                faq4_q: "How do I get started?",
+                faq4_a: "1. Click 'Launch Bot' to open @copyjesus_bot in Telegram<br>2. Choose your plan<br>3. Connect your wallet<br>4. Add KOL channels<br>5. Start copying!",
+                footer: "© 2024 QuantumBot. All rights reserved."
+            }
+            // Add more languages as needed
+        };
+
+        // Auto-detect language based on browser/location
+        function detectLanguage() {
+            // Try to get from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            if (lang && translations[lang]) {
+                return lang;
+            }
+
+            // Try browser language
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang) {
+                const langCode = browserLang.split('-')[0];
+                if (translations[langCode]) {
+                    return langCode;
+                }
+            }
+
+            // Fallback: detect from timezone
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const regionMap = {
+                'America/New_York': 'en',
+                'Europe/London': 'en',
+                'Europe/Paris': 'fr',
+                'Europe/Berlin': 'de',
+                'Europe/Rome': 'it',
+                'Europe/Madrid': 'es',
+                'Europe/Moscow': 'ru',
+                'Asia/Tokyo': 'ja',
+                'Asia/Seoul': 'ko',
+                'Asia/Shanghai': 'zh',
+                'America/Sao_Paulo': 'pt'
+            };
+            return regionMap[timezone] || 'en';
+        }
+
+        // Set language
+        let currentLang = detectLanguage();
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Language switcher event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Initialize language on load
+        setLanguage(currentLang);
+
+        // Copy address function
+        function copyAddress(id) {
+            const address = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(address).then(() => {
+                // Show success message
+                const btn = event.target.closest('.copy-btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
+
+        // FAQ toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+
+            answer.classList.toggle('active');
+
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0)';
+            }
+        }
+
+        // Dynamic pricing based on region
+        function updatePricing() {
+            const regionPrices = {
+                'US': { usd: '$', symbol: 'USD' },
+                'EU': { usd: '€', symbol: 'EUR' },
+                'UK': { usd: '£', symbol: 'GBP' },
+                'JP': { usd: '¥', symbol: 'JPY' },
+                'KR': { usd: '₩', symbol: 'KRW' },
+                'BR': { usd: 'R$', symbol: 'BRL' },
+                'MX': { usd: '$', symbol: 'MXN' },
+                'IN': { usd: '₹', symbol: 'INR' }
+            };
+
+            // Detect region from timezone
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            let region = 'US'; // Default
+
+            if (timezone.includes('Europe')) region = 'EU';
+            else if (timezone.includes('Asia/Tokyo')) region = 'JP';
+            else if (timezone.includes('Asia/Seoul')) region = 'KR';
+            // Add more region detection as needed
+
+            // Update prices if needed
+            if (regionPrices[region]) {
+                // Example: Update $29 to local currency
+                document.querySelectorAll('[data-price="29"]').forEach(el => {
+                    const basePrice = 29;
+                    const rates = {
+                        'EUR': 0.92,
+                        'GBP': 0.79,
+                        'JPY': 149.50,
+                        'KRW': 1290,
+                        'BRL': 4.95,
+                        'MXN': 17.20,
+                        'INR': 82.50
+                    };
+
+                    const localPrice = basePrice * (rates[region] || 1);
+                    el.textContent = regionPrices[region].symbol + localPrice.toFixed(0);
+                });
+            }
+        }
+
+        // Initialize
+        updatePricing();
+
+        // Add more features dynamically
+        function addDynamicFeatures() {
+            // Real-time user count
+            setInterval(() => {
+                const users = 1500 + Math.floor(Math.random() * 100);
+                document.querySelectorAll('[data-users]').forEach(el => {
+                    el.textContent = users.toLocaleString() + '+';
+                });
+            }, 30000);
+
+            // Social proof notifications
+            const notifications = [
+                { name: 'John', action: 'copied a trade', profit: '$234' },
+                { name: 'Maria', action: 'joined', profit: '' },
+                { name: 'Ahmed', action: 'made $567', profit: '' },
+                { name: 'Sophie', action: 'upgraded to Pro', profit: '' }
+            ];
+
+            // Create notification popup
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                border-left: 3px solid #00ffff;
+                z-index: 10000;
+                animation: slideIn 0.5s ease;
+            `;
+
+            // Show random notifications
+            setInterval(() => {
+                const randomNotif = notifications[Math.floor(Math.random() * notifications.length)];
+                notification.innerHTML = `
+                    <strong>${randomNotif.name}</strong> ${randomNotif.action}
+                    ${randomNotif.profit ? `<span class="text-green-400">+${randomNotif.profit}</span>` : ''}
+                `;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+            }, 10000);
+        }
+
+        // Initialize dynamic features
+        addDynamicFeatures();
+    </script>
+</body>
+</html>

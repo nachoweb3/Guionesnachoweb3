@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JESUS FOLLOWER - Bot Trading Profesional</title>
+    <meta name="description" content="Automatiza tu trading en Solana con el bot más avanzado. Copy trading, señales premium y multi-wallet.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="JESUS FOLLOWER - Bot Trading Profesional">
+    <meta property="og:description" content="Automatiza tu trading en Solana con IA y copy trading">
+    <meta property="og:image" content="https://i.imgur.com/4g6Mf1T.png">
+    <meta property="og:type" content="website">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9945FF;
+            --secondary-color: #14F195;
+            --dark-bg: #0A0E1A;
+            --card-bg: #1a1f2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(10, 14, 26, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(153, 69, 255, 0.3);
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0A0E1A 0%, #1a1f2e 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239945FF" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(153, 69, 255, 0.4);
+            color: white;
+        }
+
+        .features {
+            padding: 100px 0;
+            background: #141822;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            height: 100%;
+            border: 1px solid rgba(153, 69, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(153, 69, 255, 0.2);
+        }
+
+        .pricing {
+            padding: 100px 0;
+            background: var(--dark-bg);
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            height: 100%;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .stats {
+            padding: 100px 0;
+            background: #141822;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer {
+            background: var(--dark-bg);
+            padding: 50px 0 30px;
+            border-top: 1px solid rgba(153, 69, 255, 0.2);
+        }
+
+        .animated-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-effect {
+            background: rgba(26, 31, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(153, 69, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>
+                JESUS FOLLOWER
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Características</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Planes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stats">Estadísticas</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary-custom px-4" href="https://t.me/JESUS_FOLLOWER_BOT" target="_blank">
+                            <i class="fab fa-telegram me-2"></i>Iniciar Bot
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="animated-float">
+                        Trading Automático en Solana con IA
+                    </h1>
+                    <p class="lead mb-4">
+                        Copia las mejores señales de trading, gestiona múltiples wallets y maximiza tus ganancias con el bot más avanzado del mercado.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT" class="btn btn-primary-custom" target="_blank">
+                            <i class="fab fa-telegram me-2"></i>
+                            Probar GRATIS Ahora
+                        </a>
+                        <a href="#pricing" class="btn btn-outline-light btn-lg">
+                            Ver Planes
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <small class="text-muted">
+                            <i class="fas fa-users me-2"></i>500+ traders activos
+                            <span class="mx-3">|</span>
+                            <i class="fas fa-chart-line me-2"></i>97% tasa de éxito
+                        </small>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://i.imgur.com/3xYF7jZ.gif" alt="Bot Trading" class="img-fluid rounded-3 animated-float">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 gradient-text mb-3">Características Premium</h2>
+                <p class="lead text-muted">Todo lo que necesitas para tener éxito en trading de criptomonedas</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-robot fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Trading Automático</h4>
+                        <p class="text-muted">Ejecuta trades automáticamente basados en señales verificadas con IA avanzada</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-copy fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Copy Trading</h4>
+                        <p class="text-muted">Copia automáticamente las operaciones de traders profesionales</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-wallet fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Multi-Wallet</h4>
+                        <p class="text-muted">Gestiona hasta 10 wallets diferentes desde un solo bot</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-chart-bar fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Analytics Real-time</h4>
+                        <p class="text-muted">Monitoriza tu progreso con estadísticas detalladas en tiempo real</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-shield-alt fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Stop Loss</h4>
+                        <p class="text-muted">Protección automática contra pérdidas con límites configurables</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-rocket fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Take Profit</h4>
+                        <p class="text-muted">Vende automáticamente en tus objetivos de ganancia</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-bell fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Alertas Premium</h4>
+                        <p class="text-muted">Recibe notificaciones instantáneas de oportunidades</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="mb-3">
+                            <i class="fas fa-headset fa-3x gradient-text"></i>
+                        </div>
+                        <h4>Soporte 24/7</h4>
+                        <p class="text-muted">Asistencia prioritaria para todos nuestros usuarios premium</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 gradient-text mb-3">Planes para Todos los Niveles</h2>
+                <p class="lead text-muted">Elige el plan perfecto para tu estilo de trading</p>
+            </div>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-3">
+                    <div class="pricing-card">
+                        <h3 class="mb-3">FREE</h3>
+                        <div class="display-4 gradient-text mb-3">$0</div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>1 Wallet</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Límite $50</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Señales básicas</li>
+                            <li class="mb-2"><i class="fas fa-times text-muted me-2"></i>Copy Trade</li>
+                            <li class="mb-2"><i class="fas fa-times text-muted me-2"></i>Auto-venta</li>
+                        </ul>
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT" class="btn w-100 btn-outline-light" target="_blank">
+                            Comenzar Gratis
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="pricing-card">
+                        <h3 class="mb-3">BASIC</h3>
+                        <div class="display-4 gradient-text mb-3">0.01 SOL</div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>3 Wallets</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Límite $250</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Señales avanzadas</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Copy Trade</li>
+                            <li class="mb-2"><i class="fas fa-times text-muted me-2"></i>Auto-venta</li>
+                        </ul>
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT?start=basic" class="btn w-100 btn-outline-light" target="_blank">
+                            Actualizar
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="pricing-card featured">
+                        <span class="badge-popular">MÁS POPULAR</span>
+                        <h3 class="mb-3">PRO</h3>
+                        <div class="display-4 gradient-text mb-3">0.05 SOL</div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>5 Wallets</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Límite $1,000</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Señales premium</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Copy Trade</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Auto-venta</li>
+                        </ul>
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT?start=pro" class="btn w-100 btn-primary-custom" target="_blank">
+                            Actualizar a PRO
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="pricing-card">
+                        <h3 class="mb-3">ELITE</h3>
+                        <div class="display-4 gradient-text mb-3">0.1 SOL</div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>10 Wallets</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Límite $5,000</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Señales con IA</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Copy Trade</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Soporte VIP</li>
+                        </ul>
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT?start=elite" class="btn w-100 btn-outline-light" target="_blank">
+                            Ir a ELITE
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="1000">0</div>
+                        <p class="text-muted">Usuarios Activos</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="50000">$0</div>
+                        <p class="text-muted">Volumen Trading</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="97">0%</div>
+                        <p class="text-muted">Tasa Éxito</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="24">0/7</div>
+                        <p class="text-muted">Soporte</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="gradient-text mb-3">JESUS FOLLOWER</h5>
+                    <p class="text-muted">El bot de trading más avanzado para Solana. Automatiza, optimiza y maximiza tus ganancias.</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Documentación</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Tutoriales</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Afiliados</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Comunidad</h5>
+                    <div class="d-flex gap-3">
+                        <a href="https://t.me/JESUS_FOLLOWER_BOT" class="text-white fs-4" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-white fs-4">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center">
+                <p class="text-muted mb-0">© 2024 JESUS FOLLOWER. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated counter
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const countUp = (counter) => {
+            const target = +counter.getAttribute('data-count');
+            const count = +counter.innerText.replace(/[^0-9]/g, '');
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(() => countUp(counter), 1);
+            } else {
+                if (counter.innerText.includes('$')) {
+                    counter.innerText = '$' + target.toLocaleString();
+                } else if (counter.innerText.includes('%')) {
+                    counter.innerText = target + '%';
+                } else if (counter.innerText.includes('/')) {
+                    counter.innerText = target + '/7';
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            }
+        };
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+🚀 INSTRUCCIONES RÁPIDAS - BOT DE TRADING
+
+1️⃣ INICIAR TODO (FÁCIL):
+   Haz doble clic en: start-everything.bat
+
+2️⃣ SE ABRIRÁN 2 VENTANAS:
+   - Una con "Bot Server" (el bot corriendo)
+   - Una con "Ngrok" (la URL pública)
+
+3️⃣ EN LA VENTANA DE NGROK:
+   - Busca la línea que dice: "Forwarding"
+   - Copia la URL (ej: https://abc-123.ngrok.io)
+
+4️⃣ ACTUALIZAR .env:
+   - Abre el archivo .env
+   - Reemplaza la línea:
+     NGROK_URL=https://TU_URL_NGROK.ngrok.io
+   - Por la URL real:
+     NGROK_URL=https://abc-123.ngrok.io
+
+5️⃣ REINICIAR EL BOT:
+   - Cierra la ventana "Bot Server"
+   - Abre una nueva terminal y ejecuta:
+     node bot-webhook.js
+
+✅ ¡LISTO! El bot está funcionando
+
+📋 ¿CÓMO FUNCIONA?
+- El bot escucha el canal: https://t.me/cryptoyeezuscalls
+- Detecta automáticamente direcciones de tokens
+- Compra 0.01 SOL por cada token nuevo
+- Vende 60% cuando el precio duplica
+- Vende el resto progresivamente
+
+⚠️ IMPORTANTE:
+- Mantén las 2 ventanas abiertas siempre
+- El bot necesita internet 24/7
+- Empieza con poco dinero (0.11 SOL está bien)
+
+💡 COMANDOS EN TELEGRAM:
+/start - Ver estado
+/manual <direccion> - Compra manual
+/status - Ver posiciones activas
+
+¿Problemas? Revisa que:
+- Ngrok esté corriendo (ver URL verde)
+- El bot no tenga errores
+- Tengas SOL en tu wallet

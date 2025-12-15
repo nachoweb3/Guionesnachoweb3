@@ -1,0 +1,53 @@
+{
+  "name": "quantum-trading-bot",
+  "version": "1.0.0",
+  "description": "Professional Copy Trading Bot for Solana",
+  "main": "quantum-bot-definitivo.js",
+  "scripts": {
+    "start": "node quantum-bot-definitivo.js",
+    "dev": "nodemon quantum-bot-definitivo.js",
+    "test": "node test-quantum.js",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "solana",
+    "trading",
+    "bot",
+    "copy-trading",
+    "telegram",
+    "defi",
+    "pump.fun"
+  ],
+  "author": "Quantum Team",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "express": "^4.18.2",
+    "@solana/web3.js": "^1.87.6",
+    "@solana/spl-token": "^0.3.8",
+    "axios": "^1.6.2",
+    "stripe": "^14.11.0",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "winston": "^3.11.0",
+    "redis": "^4.6.10",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/quantum-trading-bot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/quantum-trading-bot/issues"
+  },
+  "homepage": "https://quantumtrading.ai"
+}

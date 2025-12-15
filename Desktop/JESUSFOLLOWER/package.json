@@ -1,0 +1,47 @@
+{
+  "name": "solana-memecoin-trading-bot",
+  "version": "1.0.0",
+  "description": "Bot automático para trading de memecoins en Solana",
+  "main": "bot-completo.js",
+  "scripts": {
+    "start": "node bot-final-con-canales.js",
+    "dev": "nodemon bot-simple-final.js",
+    "final": "node bot-simple-final.js",
+    "botones": "node bot-con-botones.js",
+    "graficos": "node bot-con-graficos.js",
+    "avanzado": "node bot-avanzado.js",
+    "completo-final": "node bot-completo-final.js",
+    "definitivo": "node bot-definitivo.js",
+    "funciona": "node bot-que-funciona.js",
+    "real": "node bot-trading-real.js",
+    "trading": "node bot-trading-real.js",
+    "simple": "node bot-simple.js",
+    "completo": "node bot-completo.js",
+    "premium-multi": "node bot-premium-multi.js",
+    "premium-vendedor": "node bot-premium-vendedor.js",
+    "server-pagos": "node server-pagos.js",
+    "server": "node server-pagos.js"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.91.9",
+    "axios": "^1.6.8",
+    "bs58": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.2.1",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "keywords": [
+    "solana",
+    "trading-bot",
+    "memecoins",
+    "telegram",
+    "cryptocurrency"
+  ],
+  "author": "JESUSFOLLOWER",
+  "license": "MIT"
+}
